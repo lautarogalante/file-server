@@ -6,7 +6,10 @@ import (
 )
 
 func main() {
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		BodyLimit: 1000 << 20,
+	})
+
 	routes.LoadRoutes(app)
 	app.Listen(":8000")
 }
