@@ -79,8 +79,8 @@ func Upload(c *fiber.Ctx) Result {
 
 		fileProperties := File{
 			Name: file.Filename,
-			Size: file.Size,
-			Type: file.Header.Get("Content-Type"),
+			Size: convertSize(file.Size),
+			/*Type: file.Header.Get("Content-Type"),*/
 		}
 		filePropertiesList[i] = fileProperties
 	}
