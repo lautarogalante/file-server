@@ -10,15 +10,25 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type File struct {
-	Name string `json:"name"`
-	Size int64  `json:"size"`
-	Type string `json:"type"`
-}
+func CreateDirectory(c *fiber.Ctx) Result {
+	var reqData ClientData
+	if err := c.BodyParser(&reqData); err != nil {
+		return Result{nil, err}
+	}
 
-type Result struct {
-	Data []byte
-	Err  error
+	fullPath := path.Join(reqData.Path, reqData.DirectoryName)
+	os.Mkdir(fullPath, 0755)
+
+	diretoryProperties := Directory{
+		Name: reqData.DirectoryName,
+	}
+
+	jsonData, err := json.Marshal(diretoryProperties)
+	if err != nil {
+		return Result{nil, err}
+	}
+
+	return Result{jsonData, nil}
 }
 
 func SaveFiles(files []*multipart.FileHeader) error {
