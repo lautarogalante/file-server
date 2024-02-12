@@ -1,6 +1,9 @@
 package routes
 
 import (
+	"log"
+	"os"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/lautarogalante/file-server/service"
 )
@@ -23,6 +26,21 @@ func LoadRoutes(app *fiber.App) {
 		}
 
 		return c.Status(fiber.StatusOK).Send(content.Data)
+	})
+
+	app.Get("/download", func(c *fiber.Ctx) error {
+		files := service.Download(c)
+		if files.Err != nil {
+			return c.Status(fiber.StatusInternalServerError).SendStatus(500)
+		}
+		defer func() {
+			if err := os.Remove(files.Name); err != nil {
+				log.Println("Error removing zip file:", files.Name, err)
+			}
+		}()
+
+		return c.Status(fiber.StatusOK).SendFile(files.Name)
+
 	})
 
 	app.Post("/crd", func(c *fiber.Ctx) error {
