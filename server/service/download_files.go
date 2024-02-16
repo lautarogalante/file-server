@@ -2,6 +2,7 @@ package service
 
 import (
 	"archive/zip"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -26,15 +27,23 @@ func Download(c *fiber.Ctx) DownloadName {
 			}
 		}
 		return DownloadName{Name: zipFile.Name, Err: nil}
+	} else {
+		filePath := filepath.Join(clientData.Path, clientData.File)
+		if _, err := os.Stat(filePath); err != nil {
+			if os.IsNotExist(err) {
+				return DownloadName{Err: fmt.Errorf("the file not exist")}
+			}
+
+		}
+		return DownloadName{Name: filePath, Err: nil}
 	}
 
-	return DownloadName{}
 }
 
 func bachFiles(name []string, path string) DownloadName {
 	now := time.Now().UTC()
 	formatted := now.Format("20060102T150405Z")
-	zipFileName := "download-" + formatted + ".zip"
+	zipFileName := "download-" + formatted + ".zip" //TODO: crear una carpeta para guardar el zip
 	zipFile, err := os.Create(zipFileName)
 	if err != nil {
 		return DownloadName{
@@ -46,6 +55,13 @@ func bachFiles(name []string, path string) DownloadName {
 	defer zipWriter.Close()
 	for _, filename := range name {
 		fileNamePath := filepath.Join(path, filename)
+
+		if _, err := os.Stat(fileNamePath); err != nil {
+			if os.IsNotExist(err) {
+				return DownloadName{Err: fmt.Errorf("the file not exist")}
+			}
+		}
+
 		fd, err := os.Open(fileNamePath)
 		if err != nil {
 			return DownloadName{Err: err}
