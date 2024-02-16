@@ -1,0 +1,9 @@
+.left-bar-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-bar {
+    width: 20rem;
+    height: 100vh;
+}
