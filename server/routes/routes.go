@@ -33,7 +33,7 @@ func LoadRoutes(app *fiber.App) {
 	app.Get("/download", func(c *fiber.Ctx) error {
 		files := service.Download(c)
 		if files.Err != nil {
-			return c.JSON(fiber.Map{"error": files.Err})
+			return c.JSON(fiber.Map{"error": files.Err.Error()})
 		}
 
 		contentType := mime.TypeByExtension(filepath.Ext(files.Name))
