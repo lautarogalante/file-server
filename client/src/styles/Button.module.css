@@ -1,0 +1,50 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    outline: none;
+}
+
+.button:hover {
+    background-color: #C7C8CC;
+    outline: none;
+    border: none;
+}
+
+.button:focus {
+    border: none;
+    outline: none;
+    background-color: #AAD7D9;
+}
+
+.button:active {
+  background-color: #AAD7D9; 
+  outline: none;
+}
+
+.upload {
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: none;
+}
+
+.mkdir {
+    background-color: #F5F5F5;
+    border-radius: .5rem;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.button__text {
+    width: 100%;
+    margin-left: 1rem; 
+}
+
+/*.button__icon {
+
+}*/
