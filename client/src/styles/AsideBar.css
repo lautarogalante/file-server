@@ -6,4 +6,23 @@
 .left-bar {
     width: 20rem;
     height: 100vh;
+    background-color: #F5F5F5;
+}
+
+.button-container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 1rem;
+}
+
+.upload-button-container {
+    width: 100%;
+    display: flex;
+}
+
+.mkdir-button-container {
+    width: 100%;
+    display: flex;
 }
