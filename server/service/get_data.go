@@ -11,7 +11,7 @@ import (
 
 func GetData(c *fiber.Ctx) Result {
 	var clientData ClientData
-	if err := c.BodyParser(&clientData); err != nil {
+	if err := c.QueryParser(&clientData); err != nil {
 		return Result{nil, err}
 	}
 
