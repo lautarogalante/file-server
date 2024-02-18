@@ -1,0 +1,88 @@
+.fl-and-dr-container {
+    width: 100%;
+    height: 48rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.file-cont {
+    width: 100%;
+}
+.file {
+   display: flex;
+   flex-direction: row;
+   border-top: 1px solid #B5C0D0;
+   border-bottom: 1px solid #B5C0D0;
+}
+.file:hover {
+    background-color: #e7e8ee;
+}
+
+.file:active {
+    background-color: #AAD7D9;
+}
+
+.file:focus {
+    background-color: #AAD7D9;
+}
+.file-cont {
+    width: 100%;
+    height: auto;
+}
+
+.dir {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid #B5C0D0;
+    border-bottom: 1px solid #B5C0D0;
+}
+.dir:hover {
+    background-color: #e7e8ee;
+}
+
+.dir:active {
+    background-color: #AAD7D9;
+}
+.dir:focus {
+    background-color: #AAD7D9;
+}
+.dir-cont {
+    width: 100%;
+    height: auto;
+}
+
+.fl-sp {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 2rem;
+    text-align: left;
+    padding: .5rem;
+}
+
+.dir-sp {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 2rem;
+    text-align: left;
+    padding: .5rem;
+}
+
+.fl-icon {
+    width: 1rem;
+    padding: .5rem;
+}
+.fl-icon i {
+    padding-top: .5rem;
+}
+.dir-icon {
+    width: 1rem;
+    padding: .5rem;
+}
+.dir-icon i {
+    padding-top: .5rem;
+}

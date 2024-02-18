@@ -1,8 +1,10 @@
 import './styles/App.css'
-import './components/Aside-bar'
-import LeftBar from './components/Aside-bar'
-import { DataSection } from './components/Data-section'
-import TopBar from './components/Top-bar'
+import './styles/DataSection.css'
+import './components/AsideBar'
+import LeftBar from './components/AsideBar'
+import DataSection from './components/DataSection'
+import TopBar from './components/TopBar'
+import PropertyBar from './components/PropertyBar'
 function App() {
 
   return (
@@ -11,11 +13,13 @@ function App() {
         <LeftBar/>
       </div>
       <div className='main-section'>
-        <TopBar/>
-        <DataSection/>
+        <TopBar icon='fa fa-search'/>
+        <div className='data-section'>
+          <PropertyBar/>
+          <DataSection/>
+        </div> 
       </div>
     </div>
   )
 }
-
 export default App

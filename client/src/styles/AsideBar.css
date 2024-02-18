@@ -4,9 +4,21 @@
 }
 
 .left-bar {
-    width: 20rem;
+    width: 15rem;
     height: 100vh;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    align-content: start;
     background-color: #F5F5F5;
+}
+
+.logo-container {
+    width: 10rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button-container {

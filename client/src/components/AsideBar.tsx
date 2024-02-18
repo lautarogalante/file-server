@@ -1,7 +1,7 @@
 import '../styles/AsideBar.css'
-import '../components/Button'
-import Button from '../components/Button';
-export default function LeftBar() {
+import './Button'
+import Button from './Button';
+function LeftBar() {
     
     return (
         <div className="left-bar">
@@ -20,3 +20,4 @@ export default function LeftBar() {
     );
 
 }
+export default LeftBar

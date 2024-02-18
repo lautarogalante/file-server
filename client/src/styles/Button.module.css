@@ -40,6 +40,20 @@
     border: none;
 }
 
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: none;
+    border-radius: 10rem;
+}
+
+.search span {
+    width: 100%;
+}
 .button__text {
     width: 100%;
     margin-left: 1rem; 

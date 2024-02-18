@@ -1,0 +1,21 @@
+.property-bar {
+    width: 99%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.4rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+
+.property-bar span {
+    width: 100%;
+    text-align: left;
+    padding-top: .8rem;
+    padding-left: .5rem;
+    padding-bottom: 1rem;
+}
