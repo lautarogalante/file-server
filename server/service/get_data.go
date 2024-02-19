@@ -41,7 +41,8 @@ func iterateDir(path string) (FileAndDirectory, error) {
 	for _, data := range content {
 
 		if data.IsDir() {
-			directory := Directory{Name: data.Name(), Size: "--"}
+			fullPath := filepath.Join(path, data.Name())
+			directory := Directory{Name: data.Name(), Size: "--", Path: fullPath}
 			directories = append(directories, directory)
 		} else {
 			filePath := filepath.Join(path, data.Name())
@@ -52,7 +53,7 @@ func iterateDir(path string) (FileAndDirectory, error) {
 			if err != nil {
 				return FileAndDirectory{}, err
 			}
-			file := File{Name: data.Name(), Size: convertSize(fileSize.Size())}
+			file := File{Name: data.Name(), Size: convertSize(fileSize.Size()), Path: filePath}
 			files = append(files, file)
 		}
 	}

@@ -10,6 +10,7 @@
 
 .file-cont {
     width: 100%;
+    height: auto;
 }
 .file {
    display: flex;
@@ -52,24 +53,27 @@
 .dir-cont {
     width: 100%;
     height: auto;
+
 }
 
 .fl-sp {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 2rem;
+    min-height: 2rem;
     text-align: left;
     padding: .5rem;
+    cursor: pointer;
 }
 
 .dir-sp {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 2rem;
+    min-height: 2rem;
     text-align: left;
     padding: .5rem;
+    cursor: pointer;
 }
 
 .fl-icon {

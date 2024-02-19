@@ -1,0 +1,30 @@
+.opt-icon-container {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.btns-opt {
+    width: 2rem;
+    height: 2rem;
+}
+.path-opt {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 2rem;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
+
+.path-opt span {
+    height: auto;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+}

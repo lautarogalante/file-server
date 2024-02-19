@@ -59,6 +59,24 @@
     margin-left: 1rem; 
 }
 
+.back {
+    width: 100%;
+    height: 2rem;
+    padding: .5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: none;
+}
+
+.home {
+    height: 2rem;
+    padding: .5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: none
+}
 /*.button__icon {
 
 }*/

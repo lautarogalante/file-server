@@ -18,7 +18,7 @@
     width: 100%;
     min-width: 20rem;
     padding-left: 1rem;
-    height: 2rem;
+    height: 2.5rem;
     border-radius: 2rem;
     background-color: #DDE6ED;
     outline: none;
@@ -28,6 +28,7 @@
 .input-container input::placeholder {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
+    font-size: 16px;
 }
 .input-container input:focus {
     background-color: #FFFFFF;

@@ -1,12 +1,45 @@
+import '../styles/FileAndDirectory.css'
 import { useEffect, useState } from "react";
 import getDataFromEndpoint from "../api/handleRequest";
-import '../styles/FileAndDirectory.css'
+import  handleDirectoryClick from "../utils/DirectoryEvents";
+
+
+
+function DataSection({ basePathUpdated, setBasePathUpdated }: DataSectionProps) {
+    const [fileAndDirectory, setFileAndDirectory] = useState<FileAndDirectory | null>(null);
+
+    useEffect(() => {
+        const getData = async () => {
+            try{
+                const data = await getDataFromEndpoint();
+                setFileAndDirectory(data)
+            }catch(error) {
+                console.error(error);
+            }
+        };
+        getData();
+    }, [basePathUpdated]);
+    
+ 
+
+    return (
+        <div className="fl-and-dr-container">
+              {fileAndDirectory && (
+                <>
+                    <FileList icon='fa fa-file' files={fileAndDirectory.Files} />
+                    <DirectoryList  accessDir={handleDirectoryClick(() => setBasePathUpdated(prev => !prev))} icon='fa fa-folder' directories={fileAndDirectory.Directories} />
+                    {/* <DirectoryList  accessDir={handleDirectoryClick(updateBasePath)} icon='fa fa-folder' directories={fileAndDirectory.Directories} /> */}
+                </>
+            )}
+        </div>
+    );
+}
 
 function FileList({ icon, files }: { files: FileObj[], icon: string}) {
     return (
         <div className="file-cont">
             <div>
-                {files.map((file , index) => (
+                {files && files.map((file , index) => (
                     <div className="file" key={index}>
                         <span className="fl-icon"><i className={icon}></i></span>
                         <span className="fl-sp">{file.name}</span> 
@@ -18,12 +51,12 @@ function FileList({ icon, files }: { files: FileObj[], icon: string}) {
     );
 }
 
-function DirectoryList({ icon, directories }: { directories: DirectoryObj[], icon: string}) {
+function DirectoryList({ directories, icon, accessDir }: { directories: DirectoryObj[], icon: string, accessDir: (directory: DirectoryObj) => void}) {
     return (
         <div className="dir-cont">
             <div>
-                {directories.map((directory, index) => (
-                    <div className="dir" key={index}> 
+                {directories && directories.map((directory, index) => (
+                    <div className="dir" key={index} onDoubleClick={() => accessDir(directory)}> 
                         <span className="dir-icon"><i className={icon}></i></span>
                         <span className="dir-sp">{directory.name}</span> 
                         <span className="dir-sp">{directory.size}</span>
@@ -34,29 +67,4 @@ function DirectoryList({ icon, directories }: { directories: DirectoryObj[], ico
     );
 }
 
-function FileAndDirectory() {
-    const [fileAndDirectory, setFileAndDirectory] = useState<FileAndDirectory | null>(null);
-    useEffect(() => {
-        const getData = async () => {
-            try{
-                const data = await getDataFromEndpoint();
-                setFileAndDirectory(data)
-            }catch(error) {
-                console.error(error);
-            }
-        };
-        getData();
-    }, []);
-    return (
-        <div className="fl-and-dr-container">
-              {fileAndDirectory && (
-                <>
-                    <FileList icon='fa fa-file' files={fileAndDirectory.Files} />
-                    <DirectoryList icon='fa fa-folder' directories={fileAndDirectory.Directories} />
-                </>
-            )}
-        </div>
-    );
-}
-
-export default FileAndDirectory
+export default DataSection;
