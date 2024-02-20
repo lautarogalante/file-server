@@ -1,24 +1,19 @@
 import Button from "./Button";
+import { useContext } from 'react';
 import '../styles/OptionsBar.css'
-import { backOneLevel, backToHome } from "../utils/DirectoryEvents";
-import { useState } from "react";
-import { PathConfig } from "../api/basePathConfig";
+import { PathContext } from './context/PathContext';
+import { backOneLevel, backToHome } from "../utils/EventsButton";
 
+export const OptionsIcons = () => {
 
-
-export const OptionsIcons: React.FC<OptionsIconsProps> = ({updateBasePath}) => {
-    const [pathValue, setPathValue] = useState<string>(PathConfig.basePath);
-    const changePathValue = (newValue: string) => {
-        setPathValue(newValue);
-    }; 
-    
+   const {changePathFlag, changePathValue, pathValue} = useContext(PathContext);
     return (
         <div className="opt-icon-container">
             <div className="btns-opt">
-                <Button onClick={backOneLevel(updateBasePath, changePathValue) } type='back' icon='fa fa-undo'/>
+                <Button onClick={backOneLevel(changePathFlag, changePathValue, pathValue) } type='back' icon='fa fa-undo'/>
             </div>
             <div className="btns-opt">
-                <Button onClick={backToHome(updateBasePath, changePathValue)} type='home' icon='fa fa-home'/>
+                <Button onClick={backToHome(changePathFlag, changePathValue, pathValue)} type='home' icon='fa fa-home'/>
             </div>
             <div className="path-opt">
                 <span>{pathValue}</span>
