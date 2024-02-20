@@ -1,13 +1,13 @@
 
 .top-bar-container {
     width: 100%;
-    height: 5rem;
+    height: 4rem;
     background-color: #F5F5F5;
 }
 
 .input-container {
     max-width: 30rem;
-    height: 5rem;
+    height: 4rem;
     display: flex;
     gap: .5rem;
     justify-content: left;
