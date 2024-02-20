@@ -1,11 +1,10 @@
 import axios, { AxiosResponse } from "axios";
-import { PathConfig } from '../api/basePathConfig'
 
 const baseUrl = "http://127.0.0.1:8000"
 const endpoint = "/home"
 
-function getDataFromEndpoint(): Promise<FileAndDirectory> {
-    const getDataUrl = `${baseUrl}${endpoint}?path=${encodeURIComponent(PathConfig.basePath)}&_=${Date.now()}`;
+function getDataFromEndpoint(path: string): Promise<FileAndDirectory> {
+    const getDataUrl = `${baseUrl}${endpoint}?path=${encodeURIComponent(path)}&_=${Date.now()}`;
     return axios.get<FileAndDirectory>(getDataUrl)
         .then((response: AxiosResponse<FileAndDirectory>) => {
             return response.data;
