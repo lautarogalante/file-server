@@ -1,24 +1,24 @@
 import '../styles/FileAndDirectory.css'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import getDataFromEndpoint from "../api/handleRequest";
-import  handleDirectoryClick from "../utils/DirectoryEvents";
+import { PathContext } from './context/PathContext';
+import  {handleDirectoryClick} from "../utils/EventsButton";
 
-
-
-function DataSection({ basePathUpdated, setBasePathUpdated }: DataSectionProps) {
+function DataSection() {
     const [fileAndDirectory, setFileAndDirectory] = useState<FileAndDirectory | null>(null);
+    const { pathFlag, changePathFlag, pathValue, changePathValue} = useContext(PathContext);
 
     useEffect(() => {
         const getData = async () => {
             try{
-                const data = await getDataFromEndpoint();
+                const data = await getDataFromEndpoint(pathValue);
                 setFileAndDirectory(data)
             }catch(error) {
                 console.error(error);
             }
         };
         getData();
-    }, [basePathUpdated]);
+    }, [pathFlag]);
     
  
 
@@ -27,8 +27,7 @@ function DataSection({ basePathUpdated, setBasePathUpdated }: DataSectionProps) 
               {fileAndDirectory && (
                 <>
                     <FileList icon='fa fa-file' files={fileAndDirectory.Files} />
-                    <DirectoryList  accessDir={handleDirectoryClick(() => setBasePathUpdated(prev => !prev))} icon='fa fa-folder' directories={fileAndDirectory.Directories} />
-                    {/* <DirectoryList  accessDir={handleDirectoryClick(updateBasePath)} icon='fa fa-folder' directories={fileAndDirectory.Directories} /> */}
+                    <DirectoryList  accessDir={handleDirectoryClick(changePathFlag, changePathValue, pathValue)} icon='fa fa-folder' directories={fileAndDirectory.Directories} />
                 </>
             )}
         </div>
