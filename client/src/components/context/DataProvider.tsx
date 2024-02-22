@@ -12,7 +12,6 @@ export const DataProvider = ({ children }: DataContextProps) => {
         setSelectedItems(prevSelectedItems => {
             let newSelectedItems;
             if (ctrlKey) {
-                console.log(selectedItems)
                 if (prevSelectedItems.includes(itemName)) {
                     newSelectedItems = prevSelectedItems.filter(name => name !== itemName);
                 } else {
