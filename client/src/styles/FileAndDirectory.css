@@ -22,14 +22,7 @@
     background-color: #e7e8ee;
 }
 
-.file:active {
-    background-color: #AAD7D9;
-}
-
-.file:focus {
-    background-color: #AAD7D9;
-}
-.file-cont {
+.dir-file-cont {
     width: 100%;
     height: auto;
 }
@@ -44,17 +37,6 @@
     background-color: #e7e8ee;
 }
 
-.dir:active {
-    background-color: #AAD7D9;
-}
-.dir:focus {
-    background-color: #AAD7D9;
-}
-.dir-cont {
-    width: 100%;
-    height: auto;
-
-}
 
 .fl-sp {
     display: flex;
@@ -89,4 +71,15 @@
 }
 .dir-icon i {
     padding-top: .5rem;
+}
+
+.selected {
+    background-color: #AAD7D9;
+}
+.selected:hover {
+    background-color: #AAD7D9;
+}
+
+.unselected {
+    background-color: #FFFFFF;
 }

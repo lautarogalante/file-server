@@ -1,8 +1,8 @@
 import {createContext } from "react";
 
 
- type PathContextType  = {
-    pathFlag: boolean;
+export type PathContextType  = {
+    pathFlag?: boolean;
     pathValue: string;
     changePathValue: (newPath: string) => void;
     changePathFlag: () => void;

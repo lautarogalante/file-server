@@ -34,7 +34,14 @@
     display: flex;
 }
 
+.download-button-container {
+    width: 100%;
+}
 .mkdir-button-container {
     width: 100%;
     display: flex;
+}
+
+.input-files {
+    display: none;
 }

@@ -7,7 +7,7 @@ function TopBar({icon }: { icon: string}) {
         <div className="top-bar-container">
             <div className="input-container">
                 <input type="text" placeholder="Buscar"/>
-                <Button onClick={Click} type='search' icon={icon}/>
+                <Button id="search" onClick={Click} type='search' icon={icon}/>
             </div>
         </div>
     ); 

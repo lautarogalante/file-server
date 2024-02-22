@@ -7,6 +7,8 @@ import '../styles/App.css'
 import '../styles/DataSection.css'
 
 const MainApp = () => {
+
+
     return (
         <div className='main-container'>
             <div className='left-bar-container'>
@@ -15,9 +17,9 @@ const MainApp = () => {
             <div className='main-section'>
                 <TopBar icon='fa fa-search' />
                 <OptionsIcons />
-                <div className='data-section'>
+                <div id="data-section" className='data-section'>
                     <PropertyBar />
-                    <div className="data-container">
+                    <div id="data-cont" className="data-container">
                         <DataSection />
                     </div>
                 </div>

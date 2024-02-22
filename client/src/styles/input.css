@@ -1,0 +1,31 @@
+.input-container-comp {
+    max-width: 30rem;
+    height: 4rem;
+    padding-right: 1rem;
+    display: flex;
+    gap: .5rem;
+    justify-content: left;
+    align-items: center;
+}
+
+.input-dir-name {
+    width: 100%;
+    padding-right: 1rem;
+    height: 2.5rem;
+    padding-left: 1rem;
+    border-radius: 2rem;
+    background-color: #DDE6ED;
+    outline: none;
+    border: none;
+}
+.input-dir-name:focus {
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.input-dir-name::placeholder {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}

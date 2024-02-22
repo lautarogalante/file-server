@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 16px;
     outline: none;
+    padding: .5rem;
 }
 
 .button:hover {
@@ -32,6 +32,14 @@
     border: none;
 }
 
+.download {
+    background-color: #F5F5F5;
+    border-radius: .5rem;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
 .mkdir {
     background-color: #F5F5F5;
     border-radius: .5rem;
@@ -51,9 +59,6 @@
     border-radius: 10rem;
 }
 
-.search span {
-    width: 100%;
-}
 .button__text {
     width: 100%;
     margin-left: 1rem; 
@@ -77,6 +82,4 @@
     outline: none;
     border: none
 }
-/*.button__icon {
 
-}*/
