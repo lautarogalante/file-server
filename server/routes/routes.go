@@ -24,15 +24,17 @@ func LoadRoutes(app *fiber.App) {
 	app.Post("/upload", func(c *fiber.Ctx) error {
 		content := service.Upload(c)
 		if content.Err != nil {
+			log.Printf("Error en la carga: %s\n", content.Err.Error())
 			return c.Status(fiber.StatusBadRequest).Send(c.Body())
 		}
 
 		return c.Status(fiber.StatusOK).Send(content.Data)
 	})
 
-	app.Get("/download", func(c *fiber.Ctx) error {
+	app.Post("/download", func(c *fiber.Ctx) error {
 		files := service.Download(c)
 		if files.Err != nil {
+			log.Printf("%s\n", files.Err)
 			return c.JSON(fiber.Map{"error": files.Err.Error()})
 		}
 
@@ -42,6 +44,7 @@ func LoadRoutes(app *fiber.App) {
 		}
 		c.Set("Content-Type", contentType)
 		c.Set("Content-Disposition", "attachment; filename="+filepath.Base(files.Name))
+		c.Set("Access-Control-Expose-Headers", "Content-Disposition")
 		if filepath.Ext(files.Name) == ".zip" {
 			defer func() {
 				if err := os.Remove(files.Name); err != nil {
@@ -53,7 +56,7 @@ func LoadRoutes(app *fiber.App) {
 
 	})
 
-	app.Post("/crd", func(c *fiber.Ctx) error {
+	app.Post("/mkdir", func(c *fiber.Ctx) error {
 
 		directory := service.CreateDirectory(c)
 		if directory.Err != nil {

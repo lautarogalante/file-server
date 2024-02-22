@@ -12,7 +12,8 @@ func main() {
 	})
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "http://localhost:5173",
-		AllowHeaders: "Origin, Content-Type, Accept",
+		AllowHeaders: "Origin, Content-Type, Accept, Content-Disposition Accept-Language, Content-Length",
+		AllowMethods: "GET, POST, HEAD, PUT, DELETE, PATCH",
 	}))
 
 	routes.LoadRoutes(app)

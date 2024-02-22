@@ -5,18 +5,18 @@ import (
 	"io"
 	"mime/multipart"
 	"os"
-	"path"
+	"path/filepath"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func CreateDirectory(c *fiber.Ctx) Result {
-	var reqData ClientData
+	var reqData RequestData
 	if err := c.BodyParser(&reqData); err != nil {
 		return Result{nil, err}
 	}
 
-	fullPath := path.Join(reqData.Path, reqData.DirectoryName)
+	fullPath := filepath.Join(reqData.Path, reqData.DirectoryName)
 	os.Mkdir(fullPath, 0755)
 
 	diretoryProperties := Directory{
@@ -31,13 +31,7 @@ func CreateDirectory(c *fiber.Ctx) Result {
 	return Result{jsonData, nil}
 }
 
-func SaveFiles(files []*multipart.FileHeader) error {
-
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		return err
-	}
-
+func SaveFiles(files []*multipart.FileHeader, pathDestination string) error {
 	for _, file := range files {
 
 		uploadFile, err := file.Open()
@@ -46,7 +40,7 @@ func SaveFiles(files []*multipart.FileHeader) error {
 		}
 		defer uploadFile.Close()
 
-		destinationPath := path.Join(homeDir, "backup", file.Filename)
+		destinationPath := filepath.Join(pathDestination, file.Filename)
 		destinationFile, err := os.Create(destinationPath)
 		if err != nil {
 			return err
@@ -62,6 +56,7 @@ func SaveFiles(files []*multipart.FileHeader) error {
 }
 
 func Upload(c *fiber.Ctx) Result {
+	path := c.FormValue("path")
 
 	mp, err := c.Context().MultipartForm()
 	if err != nil {
@@ -69,7 +64,7 @@ func Upload(c *fiber.Ctx) Result {
 	}
 
 	files := mp.File["files"]
-	if err = SaveFiles(files); err != nil {
+	if err = SaveFiles(files, path); err != nil {
 		return Result{nil, err}
 	}
 
@@ -80,7 +75,6 @@ func Upload(c *fiber.Ctx) Result {
 		fileProperties := File{
 			Name: file.Filename,
 			Size: convertSize(file.Size),
-			/*Type: file.Header.Get("Content-Type"),*/
 		}
 		filePropertiesList[i] = fileProperties
 	}

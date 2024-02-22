@@ -10,12 +10,12 @@ import (
 )
 
 func GetData(c *fiber.Ctx) Result {
-	var clientData ClientData
+	var clientData RequestData
 	if err := c.QueryParser(&clientData); err != nil {
 		return Result{nil, err}
 	}
 
-	data, err := iterateDir(clientData.Path)
+	data, err := iterateDir(clientData.QueryPath)
 	if err != nil {
 		return Result{nil, err}
 	}
