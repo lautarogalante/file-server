@@ -5,10 +5,11 @@ import PropertyBar from "./PropertyBar";
 import TopBar from "./TopBar";
 import '../styles/App.css'
 import '../styles/DataSection.css'
+import { Download } from "./Download";
+import { useDownloadContext } from "../context/DownloadContext";
 
 const MainApp = () => {
-
-
+    const { isDownloading } = useDownloadContext();
     return (
         <div className='main-container'>
             <div className='left-bar-container'>
@@ -24,6 +25,7 @@ const MainApp = () => {
                     </div>
                 </div>
             </div>
+            {isDownloading && <Download/>}
         </div>
     );
 };

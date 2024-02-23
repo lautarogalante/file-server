@@ -53,28 +53,29 @@ export async function createDirectory(data: MakeDir): Promise<AxiosResponse> {
     })
 }
 
-export async function downloadData(data: DownloadFiles, path: string): Promise<void> {
+export async function downloadData(data: DownloadFiles, path: string): Promise<boolean> {
     const downloadURL = `${baseUrl}${download}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`
-    await axios.post(downloadURL, data, { responseType: 'blob' })
-        .then((response: AxiosResponse) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            const contentDisposition = response.headers['content-disposition'];
-            let filename = response.headers['content-disposition'].split('filename=')[1].trim();
-            if (contentDisposition) {
-                const filenameMatch = contentDisposition.match(/filename="(.+)"/i);
-                if (filenameMatch && filenameMatch.length === 2)
-                    filename = filenameMatch[1];
-            }
-            link.setAttribute('download', filename);
-            document.body.appendChild(link);
-            link.click();
-            link.remove()
-        }).catch((error) => {
-            console.error('No se encuentra: ', error)
-        })
-
+    try {
+        const response: AxiosResponse = await axios.post(downloadURL, data, { responseType: 'blob' })
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        const contentDisposition = response.headers['content-disposition'];
+        let filename = response.headers['content-disposition'].split('filename=')[1].trim();
+        if (contentDisposition) {
+            const filenameMatch = contentDisposition.match(/filename="(.+)"/i);
+            if (filenameMatch && filenameMatch.length === 2)
+                filename = filenameMatch[1];
+        }
+        link.setAttribute('download', filename);
+        document.body.appendChild(link);
+        link.click();
+        link.remove()
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
 }
 
 

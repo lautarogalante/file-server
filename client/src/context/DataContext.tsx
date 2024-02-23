@@ -1,8 +1,10 @@
 import { createContext, useContext } from "react";
 
 type DataContextType = {
-    toggleSelection: (itemName: string, ctrlKey: boolean) => void;
-    selectedItems: string[];
+    toggleSelectionDir: (itemName: string, ctrlKey: boolean) => void;
+    toggleSelectionFiles: (itemName: string, ctrlKey: boolean) => void;
+    selectedDir: string[];
+    selectedFiles: string[];
 }
 
 

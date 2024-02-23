@@ -9,12 +9,13 @@ interface RefContextProps {
 export const RefProvider = ( { children } : RefContextProps) => {
     const [ showInput, setShowInput ] = useState<boolean>(false);
     const globalRef = useRef<HTMLDivElement>(null);
-    const { toggleSelection } = useDataContext();
+    const { toggleSelectionFiles, toggleSelectionDir } = useDataContext();
 
     const handleOutsideClick = (e: MouseEvent) => {
         const target = e.target as HTMLElement
         if (target.id !== "dir-file" && target.id !== "input" && target.id !== "download-btn"){
-            toggleSelection('', false);
+            toggleSelectionFiles('', false);
+            toggleSelectionDir('', false);
             setShowInput(false);
         }
 

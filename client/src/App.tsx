@@ -1,17 +1,20 @@
 import './styles/App.css'
 import './styles/DataSection.css'
 import './components/AsideBar'
-import { PathProvider } from './components/context/PathProvider'
+import { PathProvider } from './context/PathProvider'
 import MainApp from './components/MainApp'
-import { DataProvider } from './components/context/DataProvider'
-import { RefProvider } from './components/context/RefProvider'
+import { DataProvider } from './context/DataProvider'
+import { RefProvider } from './context/RefProvider'
+import { DownloadProvider } from './context/DownloadProvider'
 
 function App() {
   return (
     <PathProvider>
       <DataProvider>
         <RefProvider>
-          <MainApp/>
+          <DownloadProvider> 
+            <MainApp/>
+          </DownloadProvider>
         </RefProvider>
       </DataProvider>
     </PathProvider>

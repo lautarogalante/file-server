@@ -2,17 +2,19 @@ import '../styles/AsideBar.css'
 import './Button'
 import Button from './Button';
 import { downloadData, sendDataToServer } from '../api/handleRequest'
+import { fileAndDirectory, setValue } from '../utils/FileAndDirecotuObj';
 import { useContext } from 'react';
-import { PathContext } from './context/PathContext';
+import { PathContext } from '../context/PathContext';
 import InputComp from './Input';
-import { useDataContext } from './context/DataContext';
-import { DownloadFiles } from '../interfaces/FileAndDirectory';
-import { useRefContext } from './context/RefContext';
+import { useDataContext } from '../context/DataContext';
+import { useRefContext } from '../context/RefContext';
+import { useDownloadContext } from '../context/DownloadContext';
 
 function LeftBar() {
     const { pathValue, changePathFlag } = useContext(PathContext);
-    const { selectedItems } =  useDataContext();
+    const { selectedFiles, selectedDir } = useDataContext();
     const { showInput, callSetShowInput } = useRefContext();
+    const { setIsDownloading } = useDownloadContext();
 
     const handleUploadButtonClick = () => {
         const fileInput = document.getElementById('send-files') as HTMLInputElement;
@@ -35,13 +37,29 @@ function LeftBar() {
 
     }
 
-    const handleDownloadButtonClick = () => {
-        const filesArray: DownloadFiles =  {
-            files: selectedItems
-        };
-        if (filesArray.files.length === 0 || filesArray.files[0] === '') {
-        }else{
-            downloadData(filesArray, pathValue)
+    const handleDownloadButtonClick = async () => {
+        if (selectedFiles.length > 0 || selectedDir.length > 0) {
+            let selectedData = selectedFiles.concat(selectedDir);
+            setValue(selectedData);
+            if (selectedData.length === 0) {
+                console.log('No se selecciono ningun archivo o directorio');
+                return
+            } else {
+                if (selectedDir.length >= 1) {
+                    setIsDownloading(true);
+                    if (await downloadData(fileAndDirectory, pathValue)) {
+                        setIsDownloading(false);
+                    }
+                } else if (selectedFiles.length > 1) {
+                    console.log(selectedFiles)
+                    setIsDownloading(true);
+                    if (await downloadData(fileAndDirectory, pathValue)) {
+                        setIsDownloading(false);
+                    }
+                }else {
+                    downloadData(fileAndDirectory, pathValue);
+                } 
+            }
         }
     }
 
@@ -60,7 +78,7 @@ function LeftBar() {
                 </div>
                 {showInput && <InputComp></InputComp>}
                 <div className="download-button-container">
-                    <Button id='download-btn' onClick={handleDownloadButtonClick} icon='fa fa-cloud-download' title='Descargar' type='download'/>
+                    <Button id='download-btn' onClick={handleDownloadButtonClick} icon='fa fa-cloud-download' title='Descargar' type='download' />
                 </div>
             </div>
         </div>

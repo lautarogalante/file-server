@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
-import { PathContext } from './context/PathContext';
+import { PathContext } from '../context/PathContext';
 import { createDirectory } from '../api/handleRequest';
 import '../styles/input.css'
 import { MakeDir } from '../interfaces/FileAndDirectory';
-import { useRefContext } from './context/RefContext';
+import { useRefContext } from '../context/RefContext';
 
 const InputComp = () => {
 
