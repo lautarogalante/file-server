@@ -12,7 +12,7 @@ import { useDownloadContext } from '../context/DownloadContext';
 
 function LeftBar() {
     const { pathValue, changePathFlag } = useContext(PathContext);
-    const { selectedFiles, selectedDir } = useDataContext();
+    const { selectedFiles, selectedDir, toggleSelectionDir, toggleSelectionFiles} = useDataContext();
     const { showInput, callSetShowInput } = useRefContext();
     const { setIsDownloading } = useDownloadContext();
 
@@ -38,6 +38,7 @@ function LeftBar() {
     }
 
     const handleDownloadButtonClick = async () => {
+        console.log(selectedFiles, selectedDir)
         if (selectedFiles.length > 0 || selectedDir.length > 0) {
             let selectedData = selectedFiles.concat(selectedDir);
             setValue(selectedData);
@@ -49,16 +50,23 @@ function LeftBar() {
                     setIsDownloading(true);
                     if (await downloadData(fileAndDirectory, pathValue)) {
                         setIsDownloading(false);
+                        toggleSelectionDir('', false);
+                        toggleSelectionFiles('', false);
+
                     }
                 } else if (selectedFiles.length > 1) {
                     console.log(selectedFiles)
                     setIsDownloading(true);
                     if (await downloadData(fileAndDirectory, pathValue)) {
                         setIsDownloading(false);
+                        toggleSelectionFiles('', false);
                     }
-                }else {
+                } else {
+                    console.log(selectedFiles)
                     downloadData(fileAndDirectory, pathValue);
-                } 
+                    console.log(selectedFiles.length);
+                    toggleSelectionFiles('', false);
+                }
             }
         }
     }

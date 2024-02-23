@@ -1,10 +1,13 @@
 import styles from '../styles/Button.module.css'
+
 export interface ButtonOptions {
     title?: string;
     icon?: string;
     type?: string;
     onClick?: () => void;
     id: string;
+    spanIcon?: string;
+    spanText?: string;
 }
 
 

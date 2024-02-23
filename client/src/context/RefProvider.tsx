@@ -35,7 +35,7 @@ export const RefProvider = ( { children } : RefContextProps) => {
 
     return (
 
-        <RefContext.Provider value={{ globalRef, setShowInput, showInput, handleOutsideClick, callSetShowInput}}>
+        <RefContext.Provider value={{ globalRef, setShowInput, showInput, handleOutsideClick, callSetShowInput }}>
             { children }
         </RefContext.Provider>
 

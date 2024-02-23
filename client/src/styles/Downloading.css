@@ -10,50 +10,64 @@
 }
 
 .download-cont {
+    display: flex;
     width: 15rem;
     height: auto;
     position: fixed;
+    justify-content: space-around;
     right: 2rem;
     bottom: 2rem;
     margin-right: 1rem;
-    background-color: #FFFFFF;
     border-radius: 1rem;
     z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    animation: slide-up 1s ;
+    background-color: #FFFFFF;
 }
 
 .downloading {
-    width: 100%;
+    width: 80%;
     height: 2rem;
     display: flex;
     align-items: center;
     background-color: #FFFFFF;
-    padding: .5rem;
-    margin-right: 1rem;
+    padding-top: .2rem;
+    padding-right: 0;
+    padding-bottom: .2rem;
     border-radius: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    animation: slide-up 0.5s ease-out;
 }
 
 .icon-sp {
     width: 2rem;
-    padding: .5rem;
 }
 
 .icon-sp i {
     width: 2rem;
     height: auto;
+    color: #2D9596;
 }
 .title-sp {
     width: 10rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
+    font-size: 12px;
 }
 
+.spinner-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 2rem;
+}
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
 .fa-spinner {
+    width: 1rem;
     animation: spin 2s linear infinite;
 }
