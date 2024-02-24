@@ -78,15 +78,15 @@ function LeftBar() {
             </div>
             <div className="button-container">
                 <div className="upload-button-container">
-                    <Button id='upload-btn' onClick={handleUploadButtonClick} icon='fa-solid fa-plus' title='Subir Archivo' type='upload' />
+                    <Button id='upload-btn' textClass='upload-sp' iconSpClass='i-sp-upload' onClick={handleUploadButtonClick} icon='fa-solid fa-plus' title='Subir Archivo' type='upload' />
                     <input multiple type="file" id="send-files" className='input-files' onChange={handleFileInputChange} />
                 </div>
                 <div className="mkdir-button-container">
-                    <Button id='mkdir-btn' onClick={callSetShowInput} icon='fa-solid fa-folder-plus' title='Crear carpeta' type='mkdir' />
+                    <Button id='mkdir-btn' textClass='mkdir-sp' iconSpClass='i-sp-mkdir' onClick={callSetShowInput} icon='fa-solid fa-folder-plus' title='Crear carpeta' type='mkdir' />
                 </div>
                 {showInput && <InputComp></InputComp>}
                 <div className="download-button-container">
-                    <Button id='download-btn' onClick={handleDownloadButtonClick} icon='fa fa-cloud-download' title='Descargar' type='download' />
+                    <Button id='download-btn' textClass='dwn-sp' iconSpClass='i-sp-dwn' onClick={handleDownloadButtonClick} icon='fa fa-cloud-arrow-down' title='Descargar' type='download' />
                 </div>
             </div>
         </div>

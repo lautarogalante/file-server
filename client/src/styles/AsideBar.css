@@ -30,24 +30,25 @@
 }
 
 .upload-button-container {
-    width: 10rem;
+    width: 8.4rem;
     height: 3.5rem;
     display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 .download-button-container {
     width: 10rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10rem;
     height: 2.5rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 .mkdir-button-container {
     width: 10rem;
     height: 2.5rem;
     display: flex;
-    justify-content: center;
+    justify-content: start;
 }
 
 .input-files {

@@ -45,7 +45,7 @@
     min-height: 2rem;
     text-align: left;
     padding: .5rem;
-    cursor: pointer;
+    cursor: default;
 }
 
 .dir-sp {
@@ -55,7 +55,7 @@
     min-height: 2rem;
     text-align: left;
     padding: .5rem;
-    cursor: pointer;
+    cursor: default;
 }
 
 .fl-icon {

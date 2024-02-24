@@ -6,17 +6,20 @@ export interface ButtonOptions {
     type?: string;
     onClick?: () => void;
     id: string;
-    spanIcon?: string;
-    spanText?: string;
+    textClass?: string;
+    iconSpClass?: string;
 }
 
 
 function Button(btn: ButtonOptions) {
     const buttonClass = `${styles.button} ${btn.type ? styles[btn.type] : 'button'}`;
+    const buttonTextClass = btn.textClass ? styles[btn.textClass] : styles.button__text;
+    const iconClass = btn.iconSpClass ? styles[btn.iconSpClass] : styles.button__icon;
+
     return (
         <button id={btn.id} onClick={btn.onClick} className={buttonClass}>
-            <span id={btn.id} className={styles.button__icon}><i id="download-btn" className={btn.icon}></i></span> 
-            {btn.title && <span id="download-btn" className={styles.button__text}>{btn.title}</span>}
+            <span id={btn.id} className={iconClass}><i id={btn.id} className={btn.icon}></i></span> 
+            {btn.title && <span id={btn.id} className={buttonTextClass}>{btn.title}</span>}
         </button>
     );
 

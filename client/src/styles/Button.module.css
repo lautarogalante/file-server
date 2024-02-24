@@ -1,9 +1,11 @@
+@import url('fonts.css');
+
 .button {
     display: flex;
     align-items: center;
     justify-content: center;
     outline: none;
-    padding: .5rem;
+    padding: 0;
 }
 
 .button:hover {
@@ -12,18 +14,19 @@
     border: none;
 }
 
-.button:focus {
-    border: none;
-    outline: none;
-    background-color: #AAD7D9;
-}
-
-.button:active {
-  background-color: #AAD7D9; 
-  outline: none;
-}
+/* .button__icon {
+    width: 1.1rem;
+    height: auto;
+} */
 
 .upload {
+    width: 100%;
+    height: 3.5rem;
+    /* padding-left: .2rem; */
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    align-items: center;
     background-color: #FFFFFF;
     border-radius: 1rem;
     cursor: pointer;
@@ -32,23 +35,86 @@
     border: none;
 }
 
+.upload:active {
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+    outline: none;
+}
+
+.upload:focus {
+    outline: none;
+}
+
+.upload-sp {
+    width: 5.5rem;
+    height: auto;
+    font-family: 'Arimo';
+    font-size: 14px;
+}
+
+.i-sp-upload {
+    width: auto;
+    height: auto;
+}
+
 .download {
+    width: auto;
+    height: 2.5rem;
+    gap: .1rem;
+    padding-left: .6rem;
     background-color: #F5F5F5;
-    border-radius: .5rem;
+    border-radius: 1rem;
     cursor: pointer;
     outline: none;
     border: none;
+}
+
+.download:focus {
+    outline: none;
+}
+
+.dwn-sp {
+    width: 5.2rem;
+    padding: .1rem;
+    height: auto;
+    font-family: 'Arimo';
+    font-size: 14px;
+}
+.i-sp-dwn{
+    width: auto;
+    height: auto;
 }
 
 .mkdir {
     background-color: #F5F5F5;
-    border-radius: .5rem;
+    border-radius: 1rem;
+    padding-left: .7rem;
     cursor: pointer;
     outline: none;
     border: none;
 }
 
+.mkdir:focus {
+    outline: none;
+}
+
+.mkdir-sp{
+    width: 6.8rem;    
+    height: auto;
+    font-family: 'Arimo';
+    font-size: 14px;
+    padding-left: .1rem;
+}
+
+.i-sp-mkdir{
+   width: auto; 
+   height: auto;
+}
+
 .search {
+    width: 3rem;
+    height: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,12 +122,22 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     outline: none;
     border: none;
-    border-radius: 10rem;
+    border-radius: 50%;
 }
 
-.button__text {
+.search:focus {
+    outline: none;
+}
+
+.search:active {
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+    outline: none;
+}
+
+.search-sp {
     width: 100%;
-    margin-left: 1rem; 
 }
 
 .back {
@@ -74,7 +150,12 @@
     border: none;
 }
 
+.back:focus {
+    outline: none;
+}
+
 .home {
+    width: 100%;
     height: 2rem;
     padding: .5rem;
     cursor: pointer;
@@ -82,3 +163,8 @@
     outline: none;
     border: none
 }
+
+.home:focus {
+    outline: none;
+}
+

@@ -1,6 +1,9 @@
+@import url('fonts.css');
+
 .opt-icon-container {
     width: 100%;
     height: 2rem;
+    padding-left: 1rem;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -26,5 +29,5 @@
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    font-weight: bold;
+    font-family: 'Arimo-Bold';
 }
