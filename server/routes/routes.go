@@ -15,7 +15,7 @@ func LoadRoutes(app *fiber.App) {
 	app.Get("/home", func(c *fiber.Ctx) error {
 		content := service.GetData(c)
 		if content.Err != nil {
-			return c.Status(fiber.StatusBadRequest).Send(c.Body())
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": content.Err.Error()})
 		}
 
 		return c.Status(fiber.StatusOK).Send(content.Data)
@@ -24,45 +24,52 @@ func LoadRoutes(app *fiber.App) {
 	app.Post("/upload", func(c *fiber.Ctx) error {
 		content := service.Upload(c)
 		if content.Err != nil {
-			log.Printf("Error en la carga: %s\n", content.Err.Error())
-			return c.Status(fiber.StatusBadRequest).Send(c.Body())
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": content.Err.Error()})
 		}
 
 		return c.Status(fiber.StatusOK).Send(content.Data)
 	})
 
 	app.Post("/download", func(c *fiber.Ctx) error {
-		files := service.Download(c)
-		if files.Err != nil {
-			log.Printf("%s\n", files.Err)
-			return c.JSON(fiber.Map{"error": files.Err.Error()})
+		content := service.Download(c)
+		if content.Err != nil {
+			log.Printf("%s\n", content.Err)
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": content.Err.Error()})
 		}
 
-		contentType := mime.TypeByExtension(filepath.Ext(files.Name))
+		contentType := mime.TypeByExtension(filepath.Ext(content.Name))
 		if contentType == "" {
 			contentType = "application/octet-stream"
 		}
 		c.Set("Content-Type", contentType)
-		c.Set("Content-Disposition", "attachment; filename="+filepath.Base(files.Name))
+		c.Set("Content-Disposition", "attachment; filename="+filepath.Base(content.Name))
 		c.Set("Access-Control-Expose-Headers", "Content-Disposition")
-		if filepath.Ext(files.Name) == ".zip" {
+		if filepath.Ext(content.Name) == ".zip" {
 			defer func() {
-				if err := os.Remove(files.Name); err != nil {
-					log.Println("Error removing zip file:", files.Name, err)
+				if err := os.Remove(content.Name); err != nil {
+					log.Println("Error removing zip file:", content.Name, err)
 				}
 			}()
 		}
-		return c.Status(fiber.StatusOK).SendFile(files.Name)
+		return c.Status(fiber.StatusOK).SendFile(content.Name)
 
 	})
 
 	app.Post("/mkdir", func(c *fiber.Ctx) error {
 
-		directory := service.CreateDirectory(c)
-		if directory.Err != nil {
-			return c.Status(fiber.StatusBadRequest).Send(c.Body())
+		content := service.CreateDirectory(c)
+		if content.Err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": content.Err.Error()})
 		}
-		return c.Status(fiber.StatusCreated).Send(directory.Data)
+		return c.Status(fiber.StatusCreated).Send(content.Data)
+	})
+
+	app.Get("/search", func(c *fiber.Ctx) error {
+		content := service.Search(c)
+		if content.Err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": content.Err.Error()})
+		}
+		return c.Status(fiber.StatusOK).Send(content.Data)
 	})
 
 }
