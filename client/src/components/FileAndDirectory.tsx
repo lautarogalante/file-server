@@ -1,32 +1,45 @@
 import '../styles/FileAndDirectory.css'
-import { Ref, forwardRef, useContext, useEffect, useState } from "react";
-import getDataFromEndpoint from "../api/handleRequest";
+import { useContext, useEffect, useState } from "react";
+import getDataFromEndpoint, { searchData } from "../api/handleRequest";
 import { PathContext } from '../context/PathContext';
 import { handleDirectoryClick } from "../utils/EventsButton";
 import { useDataContext } from '../context/DataContext';
 import { DirectoryListTypes, FileListTypes, FileAndDirectory } from '../interfaces/FileAndDirectory'
-import { useRefContext } from '../context/RefContext';
+import { useEventContext } from '../context/EventContext';
+import { searchObj } from '../utils/FileAndDirecotuObj';
 
 function DataSection() {
     const [fileAndDirectory, setFileAndDirectory] = useState<FileAndDirectory | null>(null);
     const { pathFlag, changePathFlag, pathValue, changePathValue } = useContext(PathContext);
     const { selectedDir, selectedFiles, toggleSelectionDir, toggleSelectionFiles } = useDataContext();
-    const { globalRef } = useRefContext();
+    const { searchFlag, setSearchFlag } = useEventContext();
 
+    let data: FileAndDirectory;
+    
     useEffect(() => {
-
-        const getData = async () => {
-            try {
-                const data = await getDataFromEndpoint(pathValue);
-                setFileAndDirectory(data)
-            } catch (error) {
-                console.error(error);
+        if (searchFlag) {
+            const searching = async () => {
+                try {
+                    data = await searchData(pathValue, searchObj.data);
+                    setFileAndDirectory(data);
+                }catch(error){
+                    console.error(error);
+                }
             }
-        };
-        getData();
-
-    }, [pathFlag]);
-
+            searching();
+            setSearchFlag(false)
+        }else {
+            const getData = async () => {
+                try {
+                    data = await getDataFromEndpoint(pathValue);
+                    setFileAndDirectory(data);
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            getData();
+        }
+    }, [pathFlag, searchFlag]);
 
     return (
         <div className="fl-and-dr-container">
@@ -45,7 +58,6 @@ function DataSection() {
                         directories={fileAndDirectory.Directories}
                         selectedDir={selectedDir}
                         toggleSelectionDir={toggleSelectionDir}
-                        ref={globalRef}
                     />
                 </>
             )}
@@ -53,11 +65,10 @@ function DataSection() {
     );
 }
 
-const FileList = forwardRef(({
+const FileList = (({
     icon, files,
     selectedFiles,
     toggleSelectionFiles }: FileListTypes,
-    globalRef: Ref<HTMLDivElement>
 
 ) => {
     return (
@@ -67,7 +78,6 @@ const FileList = forwardRef(({
                     <div id="dir-file" className={`file ${selectedFiles.includes(file.name) ? 'selected' : 'file'}`}
                         key={index}
                         onClick={(e) => toggleSelectionFiles(file.name, e.ctrlKey)}
-                        ref={globalRef}
                     >
                         <span id="dir-file" className="fl-icon"><i className={icon}></i></span>
                         <span id="dir-file" className="fl-sp">{file.name}</span>
@@ -79,11 +89,10 @@ const FileList = forwardRef(({
     );
 });
 
-const DirectoryList = forwardRef(({
+const DirectoryList = (({
     directories, icon,
     accessDir, selectedDir,
     toggleSelectionDir }: DirectoryListTypes,
-    globalRef: Ref<HTMLDivElement>
 
 ) => {
     return (
@@ -94,7 +103,6 @@ const DirectoryList = forwardRef(({
                         key={index}
                         onDoubleClick={() => accessDir(directory)}
                         onClick={(e) => toggleSelectionDir(directory.name, e.ctrlKey)}
-                        ref={globalRef}
                     >
                         <span id="dir-file" className="dir-icon"><i className={icon}></i></span>
                         <span id="dir-file" className="dir-sp">{directory.name}</span>

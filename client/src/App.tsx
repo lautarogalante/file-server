@@ -4,18 +4,18 @@ import './components/AsideBar'
 import { PathProvider } from './context/PathProvider'
 import MainApp from './components/MainApp'
 import { DataProvider } from './context/DataProvider'
-import { RefProvider } from './context/RefProvider'
+import { EventProvider } from './context/EventProvider'
 import { DownloadProvider } from './context/DownloadProvider'
 
 function App() {
   return (
     <PathProvider>
       <DataProvider>
-        <RefProvider>
+        <EventProvider>
           <DownloadProvider> 
             <MainApp/>
           </DownloadProvider>
-        </RefProvider>
+        </EventProvider>
       </DataProvider>
     </PathProvider>
   )

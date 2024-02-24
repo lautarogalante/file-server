@@ -11,7 +11,7 @@
 
 .download-cont {
     display: flex;
-    width: 15.5rem;
+    width: 15.8rem;
     height: auto;
     position: fixed;
     justify-content: space-around;
@@ -47,7 +47,7 @@
     color: #2D9596;
 }
 .title-sp {
-    width: 10rem;
+    width: 11rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     font-size: 12px;

@@ -7,13 +7,13 @@ import { useContext } from 'react';
 import { PathContext } from '../context/PathContext';
 import InputComp from './Input';
 import { useDataContext } from '../context/DataContext';
-import { useRefContext } from '../context/RefContext';
+import { useEventContext } from '../context/EventContext';
 import { useDownloadContext } from '../context/DownloadContext';
 
 function LeftBar() {
     const { pathValue, changePathFlag } = useContext(PathContext);
     const { selectedFiles, selectedDir, toggleSelectionDir, toggleSelectionFiles} = useDataContext();
-    const { showInput, callSetShowInput } = useRefContext();
+    const { showInput, callSetShowInput } = useEventContext();
     const { setIsDownloading } = useDownloadContext();
 
     const handleUploadButtonClick = () => {
@@ -38,9 +38,9 @@ function LeftBar() {
     }
 
     const handleDownloadButtonClick = async () => {
-        console.log(selectedFiles, selectedDir)
         if (selectedFiles.length > 0 || selectedDir.length > 0) {
             let selectedData = selectedFiles.concat(selectedDir);
+            console.log('1- ', selectedData)
             setValue(selectedData);
             if (selectedData.length === 0) {
                 console.log('No se selecciono ningun archivo o directorio');
@@ -55,16 +55,15 @@ function LeftBar() {
 
                     }
                 } else if (selectedFiles.length > 1) {
-                    console.log(selectedFiles)
+                    console.log('2-', selectedFiles)
                     setIsDownloading(true);
                     if (await downloadData(fileAndDirectory, pathValue)) {
                         setIsDownloading(false);
                         toggleSelectionFiles('', false);
                     }
                 } else {
-                    console.log(selectedFiles)
+                    console.log('3-', selectedFiles)
                     downloadData(fileAndDirectory, pathValue);
-                    console.log(selectedFiles.length);
                     toggleSelectionFiles('', false);
                 }
             }

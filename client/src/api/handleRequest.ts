@@ -6,6 +6,7 @@ const home = "/home"
 const upload = "/upload"
 const mkdir = "/mkdir"
 const download = "/download"
+const search = "/search"
 
 async function getDataFromEndpoint(path: string): Promise<FileAndDirectory> {
     const getDataUrl = `${baseUrl}${home}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`;
@@ -78,5 +79,15 @@ export async function downloadData(data: DownloadFiles, path: string): Promise<b
     }
 }
 
+export async function searchData(path: string, target: string): Promise<FileAndDirectory> {
+    const searchURL = `${baseUrl}${search}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}&target=${target}`
+    return await axios.get<FileAndDirectory>(searchURL)
+    .then((response: AxiosResponse) => {
+        return response.data
+    }).catch((error) => {
+        console.error('searching error: ', error)
+        throw error
+    }) 
+}
 
 export default (getDataFromEndpoint);

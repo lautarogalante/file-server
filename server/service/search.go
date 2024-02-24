@@ -29,7 +29,6 @@ func Search(c *fiber.Ctx) Result {
 }
 
 func searchImp(path string, target string) (FileAndDirectory, error) {
-
 	regex, err := regexp.Compile(regexp.QuoteMeta(target))
 	if err != nil {
 		return FileAndDirectory{}, fmt.Errorf("error compiling regex: %v", err)
@@ -45,14 +44,22 @@ func searchImp(path string, target string) (FileAndDirectory, error) {
 
 		if regex.MatchString(d.Name()) {
 			if d.IsDir() {
-				directory := Directory{Name: d.Name(), Size: "--", Path: path}
+				base := filepath.Base(path)
+				directory := Directory{Name: d.Name(), Size: "--", Path: path, BaseName: base}
 				directories = append(directories, directory)
 			} else if !d.IsDir() {
 				fileSize, err := os.Stat(path)
 				if err != nil {
 					return fmt.Errorf("error when obtaining stat: %v", err)
 				}
-				file := File{Name: d.Name(), Size: convertSize(fileSize.Size()), Path: path}
+				dirPath := filepath.Dir(path)
+				base := filepath.Base(dirPath)
+				file := File{
+					Name:     d.Name(),
+					Size:     convertSize(fileSize.Size()),
+					Path:     dirPath,
+					BaseName: base,
+				}
 				files = append(files, file)
 			}
 		}
@@ -63,9 +70,6 @@ func searchImp(path string, target string) (FileAndDirectory, error) {
 	content := FileAndDirectory{
 		Files:       files,
 		Directories: directories,
-	}
-	if err != nil {
-		return FileAndDirectory{}, fmt.Errorf("Error Marshaling data: %v", err)
 	}
 
 	return content, nil

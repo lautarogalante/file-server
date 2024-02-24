@@ -3,13 +3,13 @@ import { PathContext } from '../context/PathContext';
 import { createDirectory } from '../api/handleRequest';
 import '../styles/input.css'
 import { MakeDir } from '../interfaces/FileAndDirectory';
-import { useRefContext } from '../context/RefContext';
+import { useEventContext } from '../context/EventContext';
 
 const InputComp = () => {
 
     const [ inputValue, setInputValue ] = useState('');
     const { pathValue, changePathFlag } = useContext(PathContext);
-    const { globalRef } = useRefContext();
+    const { globalRef } = useEventContext();
 
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -25,11 +25,6 @@ const InputComp = () => {
             }).catch((error) => {
                 console.log(error)
             }) 
-            
-            let input = document.getElementById('input')
-            if (input) {
-                input.style.display = 'none';
-            }
         }
     }
         

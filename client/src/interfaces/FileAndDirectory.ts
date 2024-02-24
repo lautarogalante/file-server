@@ -7,12 +7,14 @@ export interface FileObj {
     name: string;
     size: string;
     path: string;
+    basename: string;
 };
 
 export interface DirectoryObj {
     name: string;
     size: string;
     path: string;
+    basename: string;
     accessDir: () => void;
 };
 

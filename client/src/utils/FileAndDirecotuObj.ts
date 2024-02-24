@@ -13,3 +13,7 @@ export function getValue() {
 export function getLength() {
     return fileAndDirectory.files.length;
 }
+
+export let searchObj = {
+    data: "",
+};
