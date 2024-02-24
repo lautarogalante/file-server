@@ -42,7 +42,7 @@ func LoadRoutes(app *fiber.App) {
 			contentType = "application/octet-stream"
 		}
 		c.Set("Content-Type", contentType)
-		c.Set("Content-Disposition", "attachment; filename="+filepath.Base(content.Name))
+		c.Set("Content-Disposition", `attachment; filename="`+filepath.Base(content.Name)+`"`)
 		c.Set("Access-Control-Expose-Headers", "Content-Disposition")
 		if filepath.Ext(content.Name) == ".zip" {
 			defer func() {
