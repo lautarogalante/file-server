@@ -7,28 +7,32 @@ import { useDataContext } from '../context/DataContext';
 import { DirectoryListTypes, FileListTypes, FileAndDirectory } from '../interfaces/FileAndDirectory'
 import { useEventContext } from '../context/EventContext';
 import { searchObj } from '../utils/FileAndDirecotuObj';
+import { Spinner } from './Spinner';
 
 function DataSection() {
     const [fileAndDirectory, setFileAndDirectory] = useState<FileAndDirectory | null>(null);
     const { pathFlag, changePathFlag, pathValue, changePathValue } = useContext(PathContext);
     const { selectedDir, selectedFiles, toggleSelectionDir, toggleSelectionFiles } = useDataContext();
     const { searchFlag, setSearchFlag } = useEventContext();
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
     let data: FileAndDirectory;
-    
+
     useEffect(() => {
         if (searchFlag) {
+            setIsLoading(true);
             const searching = async () => {
                 try {
                     data = await searchData(pathValue, searchObj.data);
                     setFileAndDirectory(data);
-                }catch(error){
+                    setIsLoading(false);
+                } catch (error) {
                     console.error(error);
                 }
             }
             searching();
-            setSearchFlag(false)
-        }else {
+            setSearchFlag(false);
+        } else {
             const getData = async () => {
                 try {
                     data = await getDataFromEndpoint(pathValue);
@@ -43,23 +47,30 @@ function DataSection() {
 
     return (
         <div className="fl-and-dr-container">
-            {fileAndDirectory && (
-                <>
-                    <FileList
-                        icon='fa fa-file'
-                        files={fileAndDirectory.Files}
-                        selectedFiles={selectedFiles}
-                        toggleSelectionFiles={toggleSelectionFiles}
-                    />
+            {isLoading ? (
+                <div className="spinner-cont">
+                    <Spinner />
+                </div>
+            ) : (
 
-                    <DirectoryList
-                        accessDir={handleDirectoryClick({ changePathFlag, changePathValue, pathValue }, selectedFiles, selectedDir)}
-                        icon='fa fa-folder' 
-                        directories={fileAndDirectory.Directories}
-                        selectedDir={selectedDir}
-                        toggleSelectionDir={toggleSelectionDir}
-                    />
-                </>
+                fileAndDirectory && (
+                    <>
+                        <FileList
+                            icon='fa fa-file'
+                            files={fileAndDirectory.Files}
+                            selectedFiles={selectedFiles}
+                            toggleSelectionFiles={toggleSelectionFiles}
+                        />
+
+                        <DirectoryList
+                            accessDir={handleDirectoryClick({ changePathFlag, changePathValue, pathValue }, selectedFiles, selectedDir)}
+                            icon='fa fa-folder'
+                            directories={fileAndDirectory.Directories}
+                            selectedDir={selectedDir}
+                            toggleSelectionDir={toggleSelectionDir}
+                        />
+                    </>
+                )
             )}
         </div>
     );
