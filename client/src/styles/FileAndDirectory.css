@@ -8,6 +8,13 @@
     overflow-y: auto;
 }
 
+.spinner-cont {
+    position: fixed;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+}
+
 .file-cont {
     width: 100%;
     height: auto;
@@ -91,3 +98,4 @@
 .fa-file {
     color: #9DB2BF ;
 }
+
