@@ -31,14 +31,14 @@ export interface DownloadFiles {
 export interface FileListTypes {
     files: FileObj[];
     icon: string;
-    selectedFiles: string[];
-    toggleSelectionFiles: (itemName: string, ctrlKey: boolean) => void;
+    selectedFiles: FileObj[];
+    toggleSelectionFiles: (filevalue: FileObj, ctrlKey: boolean) => void;
 };
 
 export interface DirectoryListTypes {
     directories: DirectoryObj[], 
     icon: string, 
     accessDir: (directory: DirectoryObj) => void, 
-    selectedDir: string[], 
-    toggleSelectionDir: (itemName: string, ctrlKey: boolean) => void
+    selectedDirs: DirectoryObj[], 
+    toggleSelectionDir: (directory: DirectoryObj, ctrlKey: boolean) => void
 };

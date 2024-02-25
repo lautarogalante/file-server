@@ -1,51 +1,75 @@
 import { useState } from "react";
 import { DataContext } from "./DataContext";
+import { DirectoryObj, FileObj } from "../interfaces/FileAndDirectory";
 
 interface DataContextProps {
     children: JSX.Element | JSX.Element[];
 };
 
 export const DataProvider = ({ children }: DataContextProps) => {
-    const [selectedDir, setSelectedDir] = useState<string[]>([]);
-    const [selectedFiles, setSelectedFiles] = useState<string[]>([]);
+    const [selectedDirs, setSelectedDir] = useState<DirectoryObj[]>([]);
+    const [selectedFiles, setSelectedFiles] = useState<FileObj[]>([]);
 
-    const toggleSelectionDir = (dirName: string, ctrlKey: boolean) => {
+    const toggleSelectionDir = (directory: DirectoryObj, ctrlKey: boolean) => {
         setSelectedDir(prevSelectedDir => {
-            let newSelectedDir;
+            let newSelectedDir: DirectoryObj[] = [...prevSelectedDir];
+            const alreadySelected = newSelectedDir.some(dir => dir.name === directory.name);
             if (ctrlKey) {
-                if (prevSelectedDir.includes(dirName)) {
-                    newSelectedDir = prevSelectedDir.filter(name => name !== dirName);
+                if (alreadySelected) {
+                    newSelectedDir = prevSelectedDir.filter(dir => dir.name !== directory.name);
                 } else {
-                    newSelectedDir = [...prevSelectedDir, dirName];
+                    newSelectedDir.push({
+                        name: directory.name, 
+                        size: directory.size,
+                        path: directory.path,
+                        basename: directory.basename,
+                        accessDir: () => {}
+                    })
                 }
             } else {
-                newSelectedDir = [dirName];
+                newSelectedDir = [{
+                    name: directory.name, 
+                    size: directory.size,
+                    path: directory.path,
+                    basename: directory.basename,
+                    accessDir: () => {}
+                }];
             }
-            newSelectedDir = newSelectedDir.filter(item => item !== '');
+            newSelectedDir = newSelectedDir.filter(item => item.name !== '');
             return newSelectedDir;
         });
-
-
     }
-    const toggleSelectionFiles = (fileName: string, ctrlKey: boolean) => {
+
+    const toggleSelectionFiles = (filevalue: FileObj, ctrlKey: boolean) => {
         setSelectedFiles(prevSelectedFiles => {
-            let newSelectedFiles;
+            let newSelectedFiles: FileObj[] = [...prevSelectedFiles];
+            const alreadySelected = newSelectedFiles.some(file => file.name === filevalue.name);
             if (ctrlKey) {
-                if (prevSelectedFiles.includes(fileName)) {
-                    newSelectedFiles = prevSelectedFiles.filter(name => name !== fileName);
+                if (alreadySelected) {
+                    newSelectedFiles = prevSelectedFiles.filter(name => name.name !== filevalue.name);
                 } else {
-                    newSelectedFiles = [...prevSelectedFiles, fileName];
+                    newSelectedFiles.push({
+                        name: filevalue.name,
+                        size: filevalue.size,
+                        path: filevalue.path,
+                        basename: filevalue.basename,
+                    });
                 }
             } else {
-                newSelectedFiles = [fileName];
+                newSelectedFiles = [{
+                    name: filevalue.name,
+                    size: filevalue.size,
+                    path: filevalue.path,
+                    basename: filevalue.basename,
+                }];
             }
-            newSelectedFiles = newSelectedFiles.filter(item => item !== '');
+            newSelectedFiles = newSelectedFiles.filter(item => item.name !== '');
             return newSelectedFiles;
         });
 
     }
     return (
-        <DataContext.Provider value={{ toggleSelectionDir, toggleSelectionFiles, selectedDir, selectedFiles }}>
+        <DataContext.Provider value={{ toggleSelectionDir, toggleSelectionFiles, selectedDirs, selectedFiles }}>
             {children}
         </DataContext.Provider>
     )

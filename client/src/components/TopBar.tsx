@@ -1,6 +1,6 @@
 import { useEventContext } from '../context/EventContext';
 import '../styles/TopBar.css'
-import { searchObj } from '../utils/FileAndDirecotuObj';
+import { searchObj } from '../utils/FileAndDirectoryObj';
 import Button from './Button';
 
 function TopBar({icon }: { icon: string}) {

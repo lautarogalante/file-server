@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { EventContext } from "./EventContext";
 import { useDataContext } from "./DataContext";
+import { cleanSelectDir, cleanSelectFile } from "../utils/FileAndDirectoryObj";
 
 interface EventContextProps {
     children: JSX.Element | JSX.Element[]
@@ -16,8 +17,8 @@ export const EventProvider = ( { children } : EventContextProps) => {
     const handleOutsideClick = (e: MouseEvent) => {
         const target = e.target as HTMLElement
         if (target.id !== "dir-file" && target.id !== "input" && target.id !== "download-btn"){
-            toggleSelectionFiles('', false);
-            toggleSelectionDir('', false);
+            toggleSelectionFiles(cleanSelectFile, false);
+            toggleSelectionDir(cleanSelectDir, false);
             setShowInput(false);
         }
 

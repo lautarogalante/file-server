@@ -56,6 +56,7 @@ export async function createDirectory(data: MakeDir): Promise<AxiosResponse> {
 
 export async function downloadData(data: DownloadFiles, path: string): Promise<boolean> {
     const downloadURL = `${baseUrl}${download}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`
+    console.log(path, data);
     try {
         const response: AxiosResponse = await axios.post(downloadURL, data, { responseType: 'blob' })
         const url = window.URL.createObjectURL(new Blob([response.data]));

@@ -1,10 +1,11 @@
 import { createContext, useContext } from "react";
+import { DirectoryObj, FileObj } from "../interfaces/FileAndDirectory";
 
 type DataContextType = {
-    toggleSelectionDir: (itemName: string, ctrlKey: boolean) => void;
-    toggleSelectionFiles: (itemName: string, ctrlKey: boolean) => void;
-    selectedDir: string[];
-    selectedFiles: string[];
+    toggleSelectionDir: (directory: DirectoryObj, ctrlKey: boolean) => void;
+    toggleSelectionFiles: (filevalue: FileObj, ctrlKey: boolean) => void;
+    selectedDirs: DirectoryObj[];
+    selectedFiles: FileObj[];
 }
 
 

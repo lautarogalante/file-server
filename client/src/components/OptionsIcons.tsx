@@ -8,14 +8,14 @@ import { useDataContext } from "../context/DataContext";
 export const OptionsIcons = () => {
 
    const { changePathFlag, changePathValue, pathValue } = useContext(PathContext);
-   const { selectedFiles, selectedDir } = useDataContext();
+   const { selectedFiles, selectedDirs } = useDataContext();
     return (
         <div className="opt-icon-container">
             <div className="btns-opt">
-                <Button id="back" onClick={backOneLevel({changePathFlag, changePathValue, pathValue}, selectedFiles, selectedDir) } type='back' icon='fa fa-undo'/>
+                <Button id="back" onClick={backOneLevel({changePathFlag, changePathValue, pathValue}, selectedFiles, selectedDirs) } type='back' icon='fa fa-undo'/>
             </div>
             <div className="btns-opt">
-                <Button id="home" onClick={backToHome({changePathFlag, changePathValue, pathValue}, selectedFiles, selectedDir)} type='home' icon='fa fa-home'/>
+                <Button id="home" onClick={backToHome({changePathFlag, changePathValue, pathValue}, selectedFiles, selectedDirs)} type='home' icon='fa fa-home'/>
             </div>
             <div className="path-opt">
                 <span>{pathValue}</span>

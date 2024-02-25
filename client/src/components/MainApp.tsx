@@ -1,5 +1,5 @@
 import LeftBar from "./AsideBar";
-import DataSection from "./FileAndDirectory";
+import DataSection from "./ContentSection";
 import { OptionsIcons } from "./OptionsIcons";
 import PropertyBar from "./PropertyBar";
 import TopBar from "./TopBar";

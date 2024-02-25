@@ -1,4 +1,4 @@
-import { getLength } from '../utils/FileAndDirecotuObj'
+import { getLength } from '../utils/FileAndDirectoryObj'
 import '../styles/Downloading.css'
 import { useDataContext } from '../context/DataContext'
 
@@ -12,9 +12,9 @@ export const Download = () => {
 
 
 const Downloading = () => {
-    const { selectedDir, selectedFiles } = useDataContext(); 
+    const { selectedDirs, selectedFiles } = useDataContext(); 
     let data = "Directorio"; 
-    if (selectedDir.length > 1) {
+    if (selectedDirs.length > 1) {
        data = "Directorios" 
     }else if (selectedFiles.length > 1) {
         data = "Archivos"

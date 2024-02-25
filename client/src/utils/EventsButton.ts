@@ -1,7 +1,7 @@
-import { DirectoryObj } from "../interfaces/FileAndDirectory";
+import { DirectoryObj, FileObj } from "../interfaces/FileAndDirectory";
 import { PathContextType } from "../context/PathContext";
 
-export const handleDirectoryClick = ({ changePathFlag, changePathValue, pathValue }: PathContextType, selectedFiles: string[], selectedDir: string[]) => (directory: DirectoryObj) => {
+export const handleDirectoryClick = ({ changePathFlag, changePathValue, pathValue }: PathContextType, selectedFiles: FileObj[], selectedDir: DirectoryObj[]) => (directory: DirectoryObj) => {
     if (changePathFlag) {
         changePathFlag();
         if (directory.name == directory.basename) {
@@ -19,7 +19,7 @@ export const handleDirectoryClick = ({ changePathFlag, changePathValue, pathValu
 
 }
 
-export const backOneLevel = ({ changePathFlag, changePathValue, pathValue }: PathContextType, selectedFiles: string[], selectedDir: string[]) => () => {
+export const backOneLevel = ({ changePathFlag, changePathValue, pathValue }: PathContextType, selectedFiles: FileObj[], selectedDir: DirectoryObj[]) => () => {
     if (changePathFlag) {
         changePathFlag()
         selectedFiles.length = 0;
@@ -33,7 +33,7 @@ export const backOneLevel = ({ changePathFlag, changePathValue, pathValue }: Pat
     }
 }
 
-export const backToHome = ({ changePathFlag, changePathValue, pathValue }: PathContextType, selectedFiles: string[], selectedDir: string[]) => () => {
+export const backToHome = ({ changePathFlag, changePathValue, pathValue }: PathContextType, selectedFiles: FileObj[], selectedDir: DirectoryObj[]) => () => {
     if (changePathFlag) {
         changePathFlag();
         selectedFiles.length = 0;
@@ -45,6 +45,3 @@ export const backToHome = ({ changePathFlag, changePathValue, pathValue }: PathC
     }
 }
 
-// export function restorePath(dir: DirectoryObj): [string, string] {
-//     return [dir.basename, dir.path]
-// }

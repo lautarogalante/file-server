@@ -1,0 +1,81 @@
+import '../styles/FileAndDirectory.css'
+import { useContext, useEffect, useState } from "react";
+import getDataFromEndpoint, { searchData } from "../api/handleRequest";
+import { PathContext } from '../context/PathContext';
+import { handleDirectoryClick } from "../utils/EventsButton";
+import { useDataContext } from '../context/DataContext';
+import { FileAndDirectory } from '../interfaces/FileAndDirectory'
+import { useEventContext } from '../context/EventContext';
+import { searchObj } from '../utils/FileAndDirectoryObj';
+import { Spinner } from './Spinner';
+import { FileList } from './Files';
+import { DirectoryList } from './Directories';
+
+function DataSection() {
+    const [ fileAndDirectory, setFileAndDirectory ] = useState<FileAndDirectory | null>(null);
+    const { pathFlag, changePathFlag, pathValue, changePathValue } = useContext(PathContext);
+    const { selectedDirs, selectedFiles, toggleSelectionDir, toggleSelectionFiles } = useDataContext();
+    const { searchFlag, setSearchFlag } = useEventContext();
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+
+    let data: FileAndDirectory;
+
+    useEffect(() => {
+        if (searchFlag) {
+            setIsLoading(true);
+            const searching = async () => {
+                try {
+                    data = await searchData(pathValue, searchObj.data);
+                    setFileAndDirectory(data);
+                    setIsLoading(false);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            searching();
+            setSearchFlag(false);
+        } else {
+            const getData = async () => {
+                try {
+                    data = await getDataFromEndpoint(pathValue);
+                    setFileAndDirectory(data);
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            getData();
+        }
+    }, [pathFlag, searchFlag]);
+
+    return (
+        <div className="fl-and-dr-container">
+            {isLoading ? (
+                <div className="spinner-cont-dwn">
+                    <Spinner />
+                </div>
+            ) : (
+
+                fileAndDirectory && (
+                    <>
+                        <FileList
+                            icon='fa fa-file'
+                            files={fileAndDirectory.Files}
+                            selectedFiles={selectedFiles}
+                            toggleSelectionFiles={toggleSelectionFiles}
+                        />
+
+                        <DirectoryList
+                            accessDir={handleDirectoryClick({ changePathFlag, changePathValue, pathValue }, selectedFiles, selectedDirs)}
+                            icon='fa fa-folder'
+                            directories={fileAndDirectory.Directories}
+                            selectedDirs={selectedDirs}
+                            toggleSelectionDir={toggleSelectionDir}
+                        />
+                    </>
+                )
+            )}
+        </div>
+    );
+}
+
+export default DataSection;

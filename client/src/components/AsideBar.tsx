@@ -2,7 +2,7 @@ import '../styles/AsideBar.css'
 import './Button'
 import Button from './Button';
 import { downloadData, sendDataToServer } from '../api/handleRequest'
-import { fileAndDirectory, setValue } from '../utils/FileAndDirecotuObj';
+import { cleanSelectDir, cleanSelectFile, fileAndDirectory, setValue } from '../utils/FileAndDirectoryObj';
 import { useContext } from 'react';
 import { PathContext } from '../context/PathContext';
 import InputComp from './Input';
@@ -12,7 +12,7 @@ import { useDownloadContext } from '../context/DownloadContext';
 
 function LeftBar() {
     const { pathValue, changePathFlag } = useContext(PathContext);
-    const { selectedFiles, selectedDir, toggleSelectionDir, toggleSelectionFiles} = useDataContext();
+    const { selectedFiles, selectedDirs, toggleSelectionDir, toggleSelectionFiles } = useDataContext();
     const { showInput, callSetShowInput } = useEventContext();
     const { setIsDownloading } = useDownloadContext();
 
@@ -38,33 +38,30 @@ function LeftBar() {
     }
 
     const handleDownloadButtonClick = async () => {
-        if (selectedFiles.length > 0 || selectedDir.length > 0) {
-            let selectedData = selectedFiles.concat(selectedDir);
-            console.log('1- ', selectedData)
+
+        if (selectedFiles.length > 0 || selectedDirs.length > 0) {
+            const selectedData: string[] = [...selectedFiles.map(file => file.name), ...selectedDirs.map(dir => dir.name)];
             setValue(selectedData);
             if (selectedData.length === 0) {
                 console.log('No se selecciono ningun archivo o directorio');
                 return
             } else {
-                if (selectedDir.length >= 1) {
+                if (selectedDirs.length >= 1) {
                     setIsDownloading(true);
-                    if (await downloadData(fileAndDirectory, pathValue)) {
+                    if (await downloadData(fileAndDirectory, selectedDirs[0].path)) {
                         setIsDownloading(false);
-                        toggleSelectionDir('', false);
-                        toggleSelectionFiles('', false);
-
+                        toggleSelectionDir(cleanSelectDir, false);
+                        toggleSelectionFiles(cleanSelectFile, false);
                     }
                 } else if (selectedFiles.length > 1) {
-                    console.log('2-', selectedFiles)
                     setIsDownloading(true);
-                    if (await downloadData(fileAndDirectory, pathValue)) {
+                    if (await downloadData(fileAndDirectory, selectedFiles[0].path)) {
                         setIsDownloading(false);
-                        toggleSelectionFiles('', false);
+                        toggleSelectionFiles(cleanSelectFile, false);
                     }
                 } else {
-                    console.log('3-', selectedFiles)
-                    downloadData(fileAndDirectory, pathValue);
-                    toggleSelectionFiles('', false);
+                    downloadData(fileAndDirectory, selectedFiles[0].path);
+                    toggleSelectionFiles(cleanSelectFile, false);
                 }
             }
         }
