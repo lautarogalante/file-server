@@ -45,19 +45,20 @@ func searchImp(path string, target string) (FileAndDirectory, error) {
 		if regex.MatchString(d.Name()) {
 			if d.IsDir() {
 				base := filepath.Base(path)
-				directory := Directory{Name: d.Name(), Size: "--", Path: path, BaseName: base}
+				parentPath := filepath.Dir(path)
+				directory := Directory{Name: d.Name(), Size: "--", Path: parentPath, BaseName: base}
 				directories = append(directories, directory)
 			} else if !d.IsDir() {
 				fileSize, err := os.Stat(path)
 				if err != nil {
 					return fmt.Errorf("error when obtaining stat: %v", err)
 				}
-				dirPath := filepath.Dir(path)
-				base := filepath.Base(dirPath)
+				parentPath := filepath.Dir(path)
+				base := filepath.Base(parentPath)
 				file := File{
 					Name:     d.Name(),
 					Size:     convertSize(fileSize.Size()),
-					Path:     dirPath,
+					Path:     parentPath,
 					BaseName: base,
 				}
 				files = append(files, file)
