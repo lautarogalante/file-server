@@ -163,3 +163,16 @@
     outline: none;
 }
 
+.sorted {
+    width: 100%; 
+    height: 2rem;
+    padding: .5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: none;
+}
+
+.sorted:focus {
+    outline: none;
+}

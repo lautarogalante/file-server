@@ -6,6 +6,8 @@ type DataContextType = {
     toggleSelectionFiles: (filevalue: FileObj, ctrlKey: boolean) => void;
     selectedDirs: DirectoryObj[];
     selectedFiles: FileObj[];
+    sortedData: boolean;
+    handleSortedData: () => void;
 }
 
 

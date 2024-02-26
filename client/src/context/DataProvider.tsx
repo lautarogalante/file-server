@@ -9,6 +9,12 @@ interface DataContextProps {
 export const DataProvider = ({ children }: DataContextProps) => {
     const [selectedDirs, setSelectedDir] = useState<DirectoryObj[]>([]);
     const [selectedFiles, setSelectedFiles] = useState<FileObj[]>([]);
+    const [sortedData, setSortedData] = useState<boolean>(false);
+
+    const handleSortedData = () => {
+        setSortedData(prev => !prev);
+
+    }
 
     const toggleSelectionDir = (directory: DirectoryObj, ctrlKey: boolean) => {
         setSelectedDir(prevSelectedDir => {
@@ -69,7 +75,11 @@ export const DataProvider = ({ children }: DataContextProps) => {
 
     }
     return (
-        <DataContext.Provider value={{ toggleSelectionDir, toggleSelectionFiles, selectedDirs, selectedFiles }}>
+        <DataContext.Provider value={{ 
+            toggleSelectionDir, toggleSelectionFiles, 
+            selectedDirs, selectedFiles, 
+            sortedData, handleSortedData 
+        }}>
             {children}
         </DataContext.Provider>
     )

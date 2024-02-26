@@ -24,6 +24,11 @@
     border-radius: 20px;
 }
 
+.sorted-opt {
+    width: 2rem;
+    height: 2rem;
+}
+
 .path-opt span {
     height: auto;
     padding: 5px;
@@ -31,3 +36,4 @@
     padding-right: 10px;
     font-family: 'Arimo-Bold';
 }
+
