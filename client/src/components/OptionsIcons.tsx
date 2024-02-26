@@ -6,9 +6,9 @@ import { backOneLevel, backToHome } from "../utils/EventsButton";
 import { useDataContext } from "../context/DataContext";
 
 export const OptionsIcons = () => {
-
    const { changePathFlag, changePathValue, pathValue } = useContext(PathContext);
-   const { selectedFiles, selectedDirs } = useDataContext();
+   const { selectedFiles, selectedDirs, handleSortedData, sortedData} = useDataContext();
+
     return (
         <div className="opt-icon-container">
             <div className="btns-opt">
@@ -19,6 +19,9 @@ export const OptionsIcons = () => {
             </div>
             <div className="path-opt">
                 <span>{pathValue}</span>
+            </div>
+            <div className="sorted-opt">
+                <Button id="sorted-btn" onClick={handleSortedData} type="sorted" icon={`${sortedData ? 'fa-solid fa-arrow-up' : 'fa-solid fa-arrow-down'}`}/>
             </div>
         </div>
     );
