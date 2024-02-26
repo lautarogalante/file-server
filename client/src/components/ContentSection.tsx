@@ -12,11 +12,11 @@ import { FileList } from './Files';
 import { DirectoryList } from './Directories';
 
 function DataSection() {
-    const [ fileAndDirectory, setFileAndDirectory ] = useState<FileAndDirectory | null>(null);
+    const [fileAndDirectory, setFileAndDirectory] = useState<FileAndDirectory | null>(null);
     const { pathFlag, changePathFlag, pathValue, changePathValue } = useContext(PathContext);
-    const { selectedDirs, selectedFiles, toggleSelectionDir, toggleSelectionFiles } = useDataContext();
+    const { selectedDirs, selectedFiles, toggleSelectionDir, toggleSelectionFiles, sortedData } = useDataContext();
     const { searchFlag, setSearchFlag } = useEventContext();
-    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     let data: FileAndDirectory;
 
@@ -47,6 +47,27 @@ function DataSection() {
         }
     }, [pathFlag, searchFlag]);
 
+
+    const fileList = fileAndDirectory && (
+        <FileList
+            icon='fa fa-file'
+            files={fileAndDirectory.Files}
+            selectedFiles={selectedFiles}
+            toggleSelectionFiles={toggleSelectionFiles}
+        />
+    );
+
+    const directoryList = fileAndDirectory && (
+        <DirectoryList
+            accessDir={handleDirectoryClick({ changePathFlag, changePathValue, pathValue }, selectedFiles, selectedDirs)}
+            icon='fa fa-folder'
+            directories={fileAndDirectory.Directories}
+            selectedDirs={selectedDirs}
+            toggleSelectionDir={toggleSelectionDir}
+        />
+
+    );
+
     return (
         <div className="fl-and-dr-container">
             {isLoading ? (
@@ -55,24 +76,10 @@ function DataSection() {
                 </div>
             ) : (
 
-                fileAndDirectory && (
-                    <>
-                        <FileList
-                            icon='fa fa-file'
-                            files={fileAndDirectory.Files}
-                            selectedFiles={selectedFiles}
-                            toggleSelectionFiles={toggleSelectionFiles}
-                        />
-
-                        <DirectoryList
-                            accessDir={handleDirectoryClick({ changePathFlag, changePathValue, pathValue }, selectedFiles, selectedDirs)}
-                            icon='fa fa-folder'
-                            directories={fileAndDirectory.Directories}
-                            selectedDirs={selectedDirs}
-                            toggleSelectionDir={toggleSelectionDir}
-                        />
-                    </>
-                )
+                <>
+                    { sortedData ? fileList : directoryList }
+                    { sortedData ? directoryList: fileList }
+                </>
             )}
         </div>
     );
