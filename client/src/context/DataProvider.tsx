@@ -10,6 +10,7 @@ export const DataProvider = ({ children }: DataContextProps) => {
     const [selectedDirs, setSelectedDir] = useState<DirectoryObj[]>([]);
     const [selectedFiles, setSelectedFiles] = useState<FileObj[]>([]);
     const [sortedData, setSortedData] = useState<boolean>(false);
+    const [ diskFlag, setDiskFlag ] = useState<boolean>(false);
 
     const handleSortedData = () => {
         setSortedData(prev => !prev);
@@ -78,7 +79,8 @@ export const DataProvider = ({ children }: DataContextProps) => {
         <DataContext.Provider value={{ 
             toggleSelectionDir, toggleSelectionFiles, 
             selectedDirs, selectedFiles, 
-            sortedData, handleSortedData 
+            sortedData, handleSortedData,
+            diskFlag, setDiskFlag 
         }}>
             {children}
         </DataContext.Provider>

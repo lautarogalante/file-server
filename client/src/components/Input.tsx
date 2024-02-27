@@ -24,7 +24,7 @@ const InputComp = () => {
             changePathFlag();
             createDirectory(pathObj)
             .then(() => {
-                setCreateDir('error');
+                setCreateDir('success');
                 setTimeout(() => setCreateDir('idle'), 5000)
             }).catch(() => {
                 setCreateDir('error');

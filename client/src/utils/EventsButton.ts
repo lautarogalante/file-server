@@ -44,4 +44,3 @@ export const backToHome = ({ changePathFlag, changePathValue, pathValue }: PathC
         }
     }
 }
-

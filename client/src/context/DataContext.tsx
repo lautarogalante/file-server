@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
 import { DirectoryObj, FileObj } from "../interfaces/FileAndDirectory";
 
 type DataContextType = {
@@ -8,6 +8,8 @@ type DataContextType = {
     selectedFiles: FileObj[];
     sortedData: boolean;
     handleSortedData: () => void;
+    diskFlag: boolean;
+    setDiskFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 

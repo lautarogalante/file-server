@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { DownloadFiles, FileAndDirectory, MakeDir } from "../interfaces/FileAndDirectory";
+import { DiskStat } from "../interfaces/DiskStat";
 
 const baseUrl = "http://127.0.0.1:8000"
 const home = "/home"
@@ -7,8 +8,10 @@ const upload = "/upload"
 const mkdir = "/mkdir"
 const download = "/download"
 const search = "/search"
+const disk = "/disk"
+const dlt = "/delete"
 
-async function getDataFromEndpoint(path: string): Promise<FileAndDirectory> {
+export async function getDataFromEndpoint(path: string): Promise<FileAndDirectory> {
     const getDataUrl = `${baseUrl}${home}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`;
     return axios.get<FileAndDirectory>(getDataUrl)
         .then((response: AxiosResponse<FileAndDirectory>) => {
@@ -91,4 +94,23 @@ export async function searchData(path: string, target: string): Promise<FileAndD
     }) 
 }
 
-export default (getDataFromEndpoint);
+export async function getDiskStat(path: string): Promise<DiskStat> {
+    const diskStatURL = `${baseUrl}${disk}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`
+    return await axios.get<DiskStat>(diskStatURL)
+    .then((response: AxiosResponse) => {
+        return response.data
+    }).catch((error) => {
+        console.error('error when obtain diskStats: ', error)
+        throw error
+    });
+}
+
+export async function deleteContent(content: FileAndDirectory): Promise<AxiosResponse> {
+    const deleteURL = `${baseUrl}${dlt}`
+    return await axios.post(deleteURL, content, {})
+    .then((response: AxiosResponse) => {
+        return response.data
+    }).catch((error) => {
+        throw error
+    })
+}

@@ -11,6 +11,7 @@ import { useEventContext } from '../context/EventContext';
 import { useDownloadContext } from '../context/DownloadContext';
 import Success from './Success';
 import Error from './Error';
+import Disk from './DiskStat';
 
 function LeftBar() {
     const { pathValue, changePathFlag } = useContext(PathContext);
@@ -88,6 +89,7 @@ function LeftBar() {
                     <Button id='download-btn' textClass='dwn-sp' iconSpClass='i-sp-dwn' onClick={handleDownloadButtonClick} icon='fa fa-cloud-arrow-down' title='Descargar' type='download' />
                 </div>
             </div>
+            <Disk Icon='fa-solid fa-hard-drive' Text='Almacenamiento'/>    
             { uploadStatus === 'success' && <Success icon='fa-solid fa-file-circle-check' text='Archivos Subidos'/>}
             { uploadStatus === 'error' && <Error icon='fa-solid fa-xmark' text='Error al subir archivos'/> }
         </div>

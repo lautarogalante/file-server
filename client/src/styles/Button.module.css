@@ -150,3 +150,16 @@
 .sorted:focus {
     outline: none;
 }
+
+.delete {
+    color: #B31312;
+    outline: none;
+    border: none;
+    pad: .5rem;
+}
+.delete span {
+    padding: .2rem;
+}
+.delete:hover {
+    background-color: #C7C8CC;
+}

@@ -1,6 +1,6 @@
 import '../styles/FileAndDirectory.css'
 import { useContext, useEffect, useState } from "react";
-import getDataFromEndpoint, { searchData } from "../api/handleRequest";
+import { getDataFromEndpoint, searchData } from "../api/handleRequest";
 import { PathContext } from '../context/PathContext';
 import { handleDirectoryClick } from "../utils/EventsButton";
 import { useDataContext } from '../context/DataContext';

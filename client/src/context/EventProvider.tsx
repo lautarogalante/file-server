@@ -16,7 +16,7 @@ export const EventProvider = ( { children } : EventContextProps) => {
 
     const handleOutsideClick = (e: MouseEvent) => {
         const target = e.target as HTMLElement
-        if (target.id !== "dir-file" && target.id !== "input" && target.id !== "download-btn"){
+        if (target.id !== "dir-file" && target.id !== "input" && target.id !== "download-btn" && target.id !== "delete-btn"){
             toggleSelectionFiles(cleanSelectFile, false);
             toggleSelectionDir(cleanSelectDir, false);
             setShowInput(false);
