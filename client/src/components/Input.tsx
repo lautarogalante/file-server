@@ -4,12 +4,15 @@ import { createDirectory } from '../api/handleRequest';
 import '../styles/input.css'
 import { MakeDir } from '../interfaces/FileAndDirectory';
 import { useEventContext } from '../context/EventContext';
+import Success from './Success';
+import Error from './Error';
 
 const InputComp = () => {
 
     const [ inputValue, setInputValue ] = useState('');
     const { pathValue, changePathFlag } = useContext(PathContext);
     const { globalRef } = useEventContext();
+    const [ createDir, setCreateDir ] = useState<'idle' | 'success' | 'error'>('idle')
 
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -20,10 +23,12 @@ const InputComp = () => {
             }
             changePathFlag();
             createDirectory(pathObj)
-            .then((data) => {
-                console.log("Directorio creado: ", data)
-            }).catch((error) => {
-                console.log(error)
+            .then(() => {
+                setCreateDir('error');
+                setTimeout(() => setCreateDir('idle'), 5000)
+            }).catch(() => {
+                setCreateDir('error');
+                setTimeout(() => setCreateDir('idle'), 5000)
             }) 
         }
     }
@@ -37,6 +42,8 @@ const InputComp = () => {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyUp={(event) => handleKeyPress(event)}
             />
+            {createDir === 'success' && <Success icon='fa-solid  fa-folder' text='Directorio Creado'/>}
+            {createDir === 'error' && <Error icon='fa-solid fa-xmark' text='Error al crear Directorio'/>}
         </div>
     );
 
