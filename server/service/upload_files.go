@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"mime/multipart"
 	"os"
@@ -13,7 +14,7 @@ import (
 func CreateDirectory(c *fiber.Ctx) Result {
 	var reqData RequestData
 	if err := c.BodyParser(&reqData); err != nil {
-		return Result{nil, err}
+		return Result{nil, fmt.Errorf("body parser error: %v\n", err)}
 	}
 
 	fullPath := filepath.Join(reqData.Path, reqData.DirectoryName)
@@ -25,7 +26,7 @@ func CreateDirectory(c *fiber.Ctx) Result {
 
 	jsonData, err := json.Marshal(diretoryProperties)
 	if err != nil {
-		return Result{nil, err}
+		return Result{nil, fmt.Errorf("marshaling error: %v\n", err)}
 	}
 
 	return Result{jsonData, nil}
@@ -60,12 +61,12 @@ func Upload(c *fiber.Ctx) Result {
 
 	mp, err := c.Context().MultipartForm()
 	if err != nil {
-		return Result{nil, err}
+		return Result{nil, fmt.Errorf("error to instanciate multipartform: %v\n", err)}
 	}
 
 	files := mp.File["files"]
 	if err = SaveFiles(files, path); err != nil {
-		return Result{nil, err}
+		return Result{nil, fmt.Errorf("error to obtain multipart files: %v\n", err)}
 	}
 
 	filePropertiesList := make([]File, len(files))
@@ -81,7 +82,7 @@ func Upload(c *fiber.Ctx) Result {
 
 	jsonData, err := json.Marshal(filePropertiesList)
 	if err != nil {
-		return Result{nil, err}
+		return Result{nil, fmt.Errorf("marshaling error: %v\n", err)}
 	}
 
 	return Result{jsonData, err}
