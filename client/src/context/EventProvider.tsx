@@ -41,7 +41,8 @@ export const EventProvider = ( { children } : EventContextProps) => {
         <EventContext.Provider value={{ 
             globalRef, setShowInput, 
             showInput, handleOutsideClick, 
-            callSetShowInput, setSearchFlag, searchFlag 
+            callSetShowInput, setSearchFlag, 
+            searchFlag
         }}>
             { children }
         </EventContext.Provider>
