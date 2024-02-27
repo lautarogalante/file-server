@@ -1,0 +1,50 @@
+.diskstat-cont {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 1rem;
+}
+
+.icon-and-text {
+    width: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: .9rem;
+    padding-left: 1.7rem;
+}
+
+.icon-disk {
+    width: auto;
+}
+
+.text-disk {
+    width: auto;
+    height: auto;
+}
+
+.progress-bar {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    justify-content: center;
+    align-items: start;
+    gap: .5rem;
+    padding-left: 1.5rem;
+}
+.progress {
+    width: 12rem;
+}
+.used-disk-cont {
+    width: fit-content;
+    display: flex;
+}
+
+.used-disk {
+    width: fit-content;
+    height: auto;
+    
+}
