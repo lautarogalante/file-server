@@ -3,18 +3,21 @@ import './Button'
 import Button from './Button';
 import { downloadData, sendDataToServer } from '../api/handleRequest'
 import { cleanSelectDir, cleanSelectFile, fileAndDirectory, setValue } from '../utils/FileAndDirectoryObj';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { PathContext } from '../context/PathContext';
 import InputComp from './Input';
 import { useDataContext } from '../context/DataContext';
 import { useEventContext } from '../context/EventContext';
 import { useDownloadContext } from '../context/DownloadContext';
+import Success from './Success';
+import Error from './Error';
 
 function LeftBar() {
     const { pathValue, changePathFlag } = useContext(PathContext);
     const { selectedFiles, selectedDirs, toggleSelectionDir, toggleSelectionFiles } = useDataContext();
     const { showInput, callSetShowInput } = useEventContext();
     const { setIsDownloading } = useDownloadContext();
+    const [ uploadStatus, setUploadStatus ] = useState<'idle' | 'success' | 'error'>('idle')
 
     const handleUploadButtonClick = () => {
         const fileInput = document.getElementById('send-files') as HTMLInputElement;
@@ -25,16 +28,16 @@ function LeftBar() {
 
     const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files: FileList | null = event.target.files;
-
         changePathFlag();
         sendDataToServer(files, pathValue)
-            .then((data) => {
-                console.log("Archivos subidos exitosamente: ", data);
+            .then(() => {
+                setUploadStatus('success');
+                setTimeout(() => setUploadStatus('idle'), 5000)
             })
-            .catch((error) => {
-                console.error("Error al subir archivos: ", error);
+            .catch(() => {
+                setUploadStatus('error')
+                setTimeout(() => setUploadStatus('idle'), 5000)
             });
-
     }
 
     const handleDownloadButtonClick = async () => {
@@ -80,11 +83,13 @@ function LeftBar() {
                 <div className="mkdir-button-container">
                     <Button id='mkdir-btn' textClass='mkdir-sp' iconSpClass='i-sp-mkdir' onClick={callSetShowInput} icon='fa-solid fa-folder-plus' title='Crear carpeta' type='mkdir' />
                 </div>
-                {showInput && <InputComp></InputComp>}
+                {showInput && <InputComp/>}
                 <div className="download-button-container">
                     <Button id='download-btn' textClass='dwn-sp' iconSpClass='i-sp-dwn' onClick={handleDownloadButtonClick} icon='fa fa-cloud-arrow-down' title='Descargar' type='download' />
                 </div>
             </div>
+            { uploadStatus === 'success' && <Success icon='fa-solid fa-file-circle-check' text='Archivos Subidos'/>}
+            { uploadStatus === 'error' && <Error icon='fa-solid fa-xmark' text='Error al subir archivos'/> }
         </div>
     );
 
