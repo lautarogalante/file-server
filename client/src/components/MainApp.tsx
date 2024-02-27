@@ -16,7 +16,7 @@ const MainApp = () => {
                 <LeftBar />
             </div>
             <div className='main-section'>
-                <TopBar icon='fa fa-search' />
+                <TopBar/>
                 <OptionsIcons />
                 <div id="data-section" className='data-section'>
                     <PropertyBar />

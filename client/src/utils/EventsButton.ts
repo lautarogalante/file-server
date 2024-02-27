@@ -5,7 +5,7 @@ export const handleDirectoryClick = ({ changePathFlag, changePathValue, pathValu
     if (changePathFlag) {
         changePathFlag();
         if (directory.name == directory.basename) {
-            pathValue = directory.path + '/'
+            pathValue = directory.path + '/' + directory.basename + '/'
             selectedFiles.length = 0;
             selectedDir.length = 0;
             changePathValue(pathValue);

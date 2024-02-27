@@ -47,11 +47,13 @@ function DataSection() {
         }
     }, [pathFlag, searchFlag]);
 
+    const fileReversed =  fileAndDirectory?.Files ? [...fileAndDirectory?.Files].reverse() : [];
+    const directoryReversed = fileAndDirectory?.Directories ?  [...fileAndDirectory?.Directories].reverse() : [];
 
     const fileList = fileAndDirectory && (
         <FileList
             icon='fa fa-file'
-            files={fileAndDirectory.Files}
+            files={sortedData ? fileAndDirectory.Files : fileReversed}
             selectedFiles={selectedFiles}
             toggleSelectionFiles={toggleSelectionFiles}
         />
@@ -61,11 +63,10 @@ function DataSection() {
         <DirectoryList
             accessDir={handleDirectoryClick({ changePathFlag, changePathValue, pathValue }, selectedFiles, selectedDirs)}
             icon='fa fa-folder'
-            directories={fileAndDirectory.Directories}
+            directories={sortedData ? fileAndDirectory.Directories : directoryReversed}
             selectedDirs={selectedDirs}
             toggleSelectionDir={toggleSelectionDir}
         />
-
     );
 
     return (
@@ -78,7 +79,7 @@ function DataSection() {
 
                 <>
                     { sortedData ? fileList : directoryList }
-                    { sortedData ? directoryList: fileList }
+                    { sortedData ? directoryList : fileList }
                 </>
             )}
         </div>
