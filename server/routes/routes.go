@@ -72,4 +72,20 @@ func LoadRoutes(app *fiber.App) {
 		return c.Status(fiber.StatusOK).Send(content.Data)
 	})
 
+	app.Get("/disk", func(c *fiber.Ctx) error {
+		disk := service.GetDiskStat(c)
+		if disk.Err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": disk.Err.Error()})
+		}
+		return c.Status(fiber.StatusOK).Send(disk.Data)
+	})
+
+	app.Post("/delete", func(c *fiber.Ctx) error {
+		content := service.Delete(c)
+		if content.Err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": content.Err.Error()})
+		}
+		return c.Status(fiber.StatusOK).Send(content.Data)
+	})
+
 }
