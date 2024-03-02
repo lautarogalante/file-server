@@ -6,7 +6,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
-	"regexp"
+	"strings"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -29,20 +29,15 @@ func Search(c *fiber.Ctx) Result {
 }
 
 func searchImp(path string, target string) (FileAndDirectory, error) {
-	regex, err := regexp.Compile(regexp.QuoteMeta(target))
-	if err != nil {
-		return FileAndDirectory{}, fmt.Errorf("error compiling regex: %v", err)
-	}
-
 	var directories []Directory
 	var files []File
 
-	err = filepath.WalkDir(path, func(path string, d fs.DirEntry, err error) error {
+	err := filepath.WalkDir(path, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
 
-		if regex.MatchString(d.Name()) {
+		if strings.Contains(d.Name(), target) {
 			if d.IsDir() {
 				base := filepath.Base(path)
 				parentPath := filepath.Dir(path)
@@ -67,6 +62,10 @@ func searchImp(path string, target string) (FileAndDirectory, error) {
 
 		return nil
 	})
+
+	if err != nil {
+		return FileAndDirectory{}, nil
+	}
 
 	content := FileAndDirectory{
 		Files:       files,
