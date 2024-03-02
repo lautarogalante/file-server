@@ -8,11 +8,12 @@ import { FileAndDirectory } from "../interfaces/FileAndDirectory";
 import { deleteContent } from "../api/handleRequest";
 import Success from "./Success";
 import Error from "./Error";
+import { cleanSelectDir, cleanSelectFile } from "../utils/FileAndDirectoryObj";
 
 export const OptionsIcons = () => {
     const { changePathFlag, changePathValue, pathValue } = useContext(PathContext);
-    const { selectedFiles, selectedDirs, handleSortedData, sortedData } = useDataContext();
-    const [deleted, setDeleted] = useState<'idle' | 'success' | 'error' | 'void'>('idle');
+    const { selectedFiles, selectedDirs, handleSortedData, sortedData, toggleSelectionDir, toggleSelectionFiles } = useDataContext();
+    const [ deleted, setDeleted ] = useState<'idle' | 'success' | 'error' | 'void'>('idle');
 
     const handleDeleteSelection = () => {
         let content: FileAndDirectory = {
@@ -26,6 +27,8 @@ export const OptionsIcons = () => {
             deleteContent(content).then(() => {
                 setDeleted('success');
                 setTimeout(() => setDeleted('idle'), 5000);
+                toggleSelectionDir(cleanSelectDir, false);
+                toggleSelectionFiles(cleanSelectFile, false);
             }).catch(() => {
                 setDeleted('error');
                 setTimeout(() => setDeleted('idle'), 5000);

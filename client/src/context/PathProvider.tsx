@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PathContext } from "./PathContext";
 
 const PathConfig = {
-    basePath: "/home/lautaro/"
+    basePath: import.meta.env.VITE_STORAGE_PATH || '/home/'
 };
 
 interface PathContextProps {

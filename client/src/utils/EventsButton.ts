@@ -38,7 +38,8 @@ export const backToHome = ({ changePathFlag, changePathValue, pathValue }: PathC
         changePathFlag();
         selectedFiles.length = 0;
         selectedDir.length = 0;
-        pathValue = "/home/lautaro/"
+        pathValue = import.meta.env.VITE_STORAGE_PATH || '/home/'
+        
         if (changePathValue) {
             changePathValue(pathValue)
         }

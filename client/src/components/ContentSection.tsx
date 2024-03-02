@@ -47,8 +47,8 @@ function DataSection() {
         }
     }, [pathFlag, searchFlag]);
 
-    const fileReversed =  fileAndDirectory?.Files ? [...fileAndDirectory?.Files].reverse() : [];
-    const directoryReversed = fileAndDirectory?.Directories ?  [...fileAndDirectory?.Directories].reverse() : [];
+    const fileReversed = fileAndDirectory?.Files ? [...fileAndDirectory?.Files].reverse() : [];
+    const directoryReversed = fileAndDirectory?.Directories ? [...fileAndDirectory?.Directories].reverse() : [];
 
     const fileList = fileAndDirectory && (
         <FileList
@@ -76,14 +76,15 @@ function DataSection() {
                     <Spinner />
                 </div>
             ) : (
-
                 <>
-                    { sortedData ? fileList : directoryList }
-                    { sortedData ? directoryList : fileList }
+                    {sortedData ? fileList : directoryList}
+                    {sortedData ? directoryList : fileList}
                 </>
             )}
-        </div>
+
+        </div >
     );
+
 }
 
 export default DataSection;

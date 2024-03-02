@@ -1,6 +1,5 @@
 import {createContext } from "react";
 
-
 export type PathContextType  = {
     pathFlag?: boolean;
     pathValue: string;
@@ -10,7 +9,7 @@ export type PathContextType  = {
 
 export const PathContext = createContext<PathContextType>({
     pathFlag: false,
-    pathValue: "/home/lautaro",
+    pathValue: import.meta.env.VITE_STORAGE_PATH || '/home/',
     changePathValue: () => {},
     changePathFlag: () => {}
 });

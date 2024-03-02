@@ -11,7 +11,7 @@
 .spinner-cont-dwn {
     position: fixed;
     top: 50%;
-    left: 53%;
+    left: 57%;
     transform: translate(-50%, -50%);
 }
 
@@ -99,3 +99,7 @@
     color: #9DB2BF ;
 }
 
+.content-sp {
+    width: 100%;
+    height: 2rem;
+}

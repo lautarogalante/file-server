@@ -74,7 +74,7 @@ function LeftBar() {
     return (
         <div className="left-bar">
             <div className="logo-container">
-                <span>My Cloud</span>
+                <span>Home Cloud</span>
             </div>
             <div className="button-container">
                 <div className="upload-button-container">

@@ -2,7 +2,9 @@ import axios, { AxiosResponse } from "axios";
 import { DownloadFiles, FileAndDirectory, MakeDir } from "../interfaces/FileAndDirectory";
 import { DiskStat } from "../interfaces/DiskStat";
 
-const baseUrl = "http://127.0.0.1:8000"
+const baseUrl = import.meta.env.VITE_HOST_URL;
+const port = import.meta.env.VITE_SERVER_PORT;
+
 const home = "/home"
 const upload = "/upload"
 const mkdir = "/mkdir"
@@ -11,8 +13,10 @@ const search = "/search"
 const disk = "/disk"
 const dlt = "/delete"
 
+console.log(baseUrl, port)
+
 export async function getDataFromEndpoint(path: string): Promise<FileAndDirectory> {
-    const getDataUrl = `${baseUrl}${home}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`;
+    const getDataUrl = `${baseUrl}:${port}${home}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`;
     return axios.get<FileAndDirectory>(getDataUrl)
         .then((response: AxiosResponse<FileAndDirectory>) => {
             return response.data;
@@ -25,7 +29,7 @@ export async function getDataFromEndpoint(path: string): Promise<FileAndDirector
 
 
 export async function sendDataToServer(files: FileList | null, path: any): Promise<AxiosResponse> {
-    const uploadUrl = `${baseUrl}${upload}`
+    const uploadUrl = `${baseUrl}:${port}${upload}`
     if (!files) {
         return Promise.reject("No se han selecionado archivos");
     }
@@ -49,7 +53,7 @@ export async function sendDataToServer(files: FileList | null, path: any): Promi
 }
 
 export async function createDirectory(data: MakeDir): Promise<AxiosResponse> {
-    const mkdirUrl = `${baseUrl}${mkdir}`
+    const mkdirUrl = `${baseUrl}:${port}${mkdir}`
     return await axios.post(mkdirUrl, data, {}).then((response: AxiosResponse) => {
         return response.data
     }).catch((error) => {
@@ -58,7 +62,7 @@ export async function createDirectory(data: MakeDir): Promise<AxiosResponse> {
 }
 
 export async function downloadData(data: DownloadFiles, path: string): Promise<boolean> {
-    const downloadURL = `${baseUrl}${download}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`
+    const downloadURL = `${baseUrl}:${port}${download}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`
     console.log(path, data);
     try {
         const response: AxiosResponse = await axios.post(downloadURL, data, { responseType: 'blob' })
@@ -84,7 +88,7 @@ export async function downloadData(data: DownloadFiles, path: string): Promise<b
 }
 
 export async function searchData(path: string, target: string): Promise<FileAndDirectory> {
-    const searchURL = `${baseUrl}${search}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}&target=${target}`
+    const searchURL = `${baseUrl}:${port}${search}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}&target=${target}`
     return await axios.get<FileAndDirectory>(searchURL)
     .then((response: AxiosResponse) => {
         return response.data
@@ -95,7 +99,7 @@ export async function searchData(path: string, target: string): Promise<FileAndD
 }
 
 export async function getDiskStat(path: string): Promise<DiskStat> {
-    const diskStatURL = `${baseUrl}${disk}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`
+    const diskStatURL = `${baseUrl}:${port}${disk}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`
     return await axios.get<DiskStat>(diskStatURL)
     .then((response: AxiosResponse) => {
         return response.data
@@ -106,7 +110,7 @@ export async function getDiskStat(path: string): Promise<DiskStat> {
 }
 
 export async function deleteContent(content: FileAndDirectory): Promise<AxiosResponse> {
-    const deleteURL = `${baseUrl}${dlt}`
+    const deleteURL = `${baseUrl}:${port}${dlt}`
     return await axios.post(deleteURL, content, {})
     .then((response: AxiosResponse) => {
         return response.data
