@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  server:
+    build:
+      context: ./server
+    ports:
+      - '8080:8000'
+    volumes:
+      - /home/lautaro:/storage
+    environment:
+      - HOST_URL=${VITE_HOST_URL}
+      - CLIENT_PORT=${VITE_CLIENT_PORT}
+  client:
+    build:
+      context: ./client
+      args:
+        - VITE_HOST_URL=${VITE_HOST_URL}
+        - VITE_SERVER_PORT=${VITE_SERVER_PORT}
+        - VITE_STORAGE_PATH=${VITE_STORAGE_PATH}
+    ports:
+      - '8081:3000'
+    
