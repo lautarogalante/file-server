@@ -9,7 +9,7 @@ export type PathContextType  = {
 
 export const PathContext = createContext<PathContextType>({
     pathFlag: false,
-    pathValue: import.meta.env.VITE_STORAGE_PATH || '/home/',
+    pathValue: import.meta.env.VITE_STORAGE_PATH || '/home/$USER',
     changePathValue: () => {},
     changePathFlag: () => {}
 });

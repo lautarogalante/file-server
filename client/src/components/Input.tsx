@@ -21,7 +21,6 @@ const InputComp = () => {
                 directory: inputValue,
                 path: pathValue,
             }
-            changePathFlag();
             createDirectory(pathObj)
             .then(() => {
                 setCreateDir('success');
@@ -30,6 +29,7 @@ const InputComp = () => {
                 setCreateDir('error');
                 setTimeout(() => setCreateDir('idle'), 5000)
             }) 
+            changePathFlag();
         }
     }
         

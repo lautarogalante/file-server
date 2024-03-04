@@ -9,7 +9,7 @@
 }
 
 .button:hover {
-    background-color: #C7C8CC;
+    background-color: #e1e2e4;
     outline: none;
     border: none;
 }
@@ -58,7 +58,7 @@
     height: 2.5rem;
     gap: .1rem;
     padding-left: .6rem;
-    background-color: #F5F5F5;
+    background-color: #f9f9f9;
     border-radius: 1rem;
     cursor: pointer;
     outline: none;
@@ -82,7 +82,7 @@
 }
 
 .mkdir {
-    background-color: #F5F5F5;
+    background-color: #f9f9f9;
     border-radius: 1rem;
     padding-left: .7rem;
     cursor: pointer;
@@ -106,8 +106,6 @@
    width: auto; 
    height: auto;
 }
-
-
 
 .back {
     width: 100%;
@@ -161,5 +159,5 @@
     padding: .2rem;
 }
 .delete:hover {
-    background-color: #C7C8CC;
+    background-color: #d5d6da;
 }

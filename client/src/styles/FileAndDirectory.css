@@ -29,6 +29,7 @@
     background-color: #e7e8ee;
 }
 
+
 .dir-file-cont {
     width: 100%;
     height: auto;
@@ -53,6 +54,11 @@
     text-align: left;
     padding: .5rem;
     cursor: default;
+    user-select: none; /* Sintaxis estándar */
+    -webkit-user-select: none; /* Navegadores basados en Webkit (Safari, Chrome) */
+    -moz-user-select: none; /* Navegadores Mozilla */
+    -ms-user-select: none; /* IE 10+ */
+    -khtml-user-select: none;
 }
 
 .dir-sp {
@@ -63,11 +69,21 @@
     text-align: left;
     padding: .5rem;
     cursor: default;
+    user-select: none; /* Sintaxis estándar */
+    -webkit-user-select: none; /* Navegadores basados en Webkit (Safari, Chrome) */
+    -moz-user-select: none; /* Navegadores Mozilla */
+    -ms-user-select: none; /* IE 10+ */
+    -khtml-user-select: none; /* Navegadores basados en Konqueror */
 }
 
 .fl-icon {
     width: 1rem;
     padding: .5rem;
+    user-select: none; /* Sintaxis estándar */
+    -webkit-user-select: none; /* Navegadores basados en Webkit (Safari, Chrome) */
+    -moz-user-select: none; /* Navegadores Mozilla */
+    -ms-user-select: none; /* IE 10+ */
+    -khtml-user-select: none;
 }
 .fl-icon i {
     padding-top: .5rem;
@@ -75,6 +91,11 @@
 .dir-icon {
     width: 1rem;
     padding: .5rem;
+    user-select: none; /* Sintaxis estándar */
+    -webkit-user-select: none; /* Navegadores basados en Webkit (Safari, Chrome) */
+    -moz-user-select: none; /* Navegadores Mozilla */
+    -ms-user-select: none; /* IE 10+ */
+    -khtml-user-select: none; /* Navegadores basados en Konqueror */
 }
 .dir-icon i {
     padding-top: .5rem;
@@ -92,7 +113,7 @@
 }
 
 .fa-folder{
-    color: #6eb8c5;
+    color: #54aeff;
 }
 
 .fa-file {

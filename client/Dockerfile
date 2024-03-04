@@ -1,9 +1,9 @@
 
 FROM node:current-alpine AS builder
 
-ARG VITE_STORAGE_PATH
 ARG VITE_HOST_URL
 ARG VITE_SERVER_PORT
+ARG VITE_STORAGE_PATH
 
 WORKDIR /usr/src/app/client
 

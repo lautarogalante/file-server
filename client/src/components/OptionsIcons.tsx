@@ -26,6 +26,7 @@ export const OptionsIcons = () => {
         } else {
             deleteContent(content).then(() => {
                 setDeleted('success');
+                changePathFlag();
                 setTimeout(() => setDeleted('idle'), 5000);
                 toggleSelectionDir(cleanSelectDir, false);
                 toggleSelectionFiles(cleanSelectFile, false);
@@ -33,7 +34,6 @@ export const OptionsIcons = () => {
                 setDeleted('error');
                 setTimeout(() => setDeleted('idle'), 5000);
             })
-            changePathFlag();
         }
 
     }

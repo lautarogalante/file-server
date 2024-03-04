@@ -1,3 +1,5 @@
+@import url('fonts.css');
+
 .left-bar-container {
     display: flex;
     flex-direction: column;
@@ -7,27 +9,35 @@
     width: 16rem;
     height: 100vh;
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-direction: column;
     align-content: start;
-    background-color: #F5F5F5;
+    background-color: #f9f9f9;
 }
 
 .logo-container {
-    width: 100%;
-    height: 7rem;
+    width: fit-content;
+    height: 3rem;
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    gap: 1rem;
+    padding-left: 1.5rem;
     align-items: center;
+    padding-top: 1rem;
 }
 .logo-container span {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5rem;
+    width: fit-content;
     height: auto;
+    font-family: 'Arimo-Bold';
+    font-weight: bold;
 }
 
+.logo-container span i {
+    color: #AAD7D9;
+}
 
 .button-container {
     width: auto;
@@ -35,6 +45,7 @@
     flex-direction: column;
     gap: 1rem;
     padding-left: 1rem;
+    padding-top: 2.5rem;
 }
 
 .upload-button-container {
@@ -57,6 +68,17 @@
     height: 2.5rem;
     display: flex;
     justify-content: start;
+}
+
+.fa-folder-plus {
+    color: #54aeff;
+}
+.fa-cloud-arrow-down {
+    color: #54ca89;
+}
+
+.fa-hard-drive {
+    color: #79999b;
 }
 
 .input-files {

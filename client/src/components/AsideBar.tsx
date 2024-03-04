@@ -29,9 +29,9 @@ function LeftBar() {
 
     const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files: FileList | null = event.target.files;
-        changePathFlag();
         sendDataToServer(files, pathValue)
             .then(() => {
+                changePathFlag();
                 setUploadStatus('success');
                 setTimeout(() => setUploadStatus('idle'), 5000)
             })
@@ -74,7 +74,8 @@ function LeftBar() {
     return (
         <div className="left-bar">
             <div className="logo-container">
-                <span>Home Cloud</span>
+                <span><i className='fa-solid fa-cloud'></i></span>
+                <span>File Server</span>
             </div>
             <div className="button-container">
                 <div className="upload-button-container">
