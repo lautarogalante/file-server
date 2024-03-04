@@ -13,7 +13,7 @@ This application consists of a client in React and a backend in Go that performs
 - [Run in your local machine](#run-in-your-local-machine)
   - [Export environment variables](#export-environment-variables)
   - [Backend](#backend)
-  - [Frontend](#frontnend)
+  - [Frontend](#frontend)
 - [Run using Docker](#run-using-docker)
 
 ## Clone
