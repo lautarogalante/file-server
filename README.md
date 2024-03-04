@@ -86,4 +86,4 @@ and run it:
 docker compose up
 ```
 
-The client app will be available at **http://your-ip:CLIENT_PORT**
+The client app will be available at **HOST_URL:CLIENT_PORT**
