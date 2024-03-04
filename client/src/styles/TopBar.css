@@ -1,8 +1,10 @@
 
 .top-bar-container {
-    width: 38%;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: .5rem;
     min-width: 25rem;
     height: 2.5rem;
     margin-top: 10px;
@@ -10,7 +12,8 @@
 }
 
 .input-container {
-    width: 100%;
+    width: 38%;
+    min-width: 25rem;
     height: 2.5rem;
     display: flex;
     justify-content: left;

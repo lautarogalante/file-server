@@ -1,6 +1,7 @@
 import { useEventContext } from '../context/EventContext';
 import '../styles/TopBar.css'
 import { searchObj } from '../utils/FileAndDirectoryObj';
+import { SwitchButton } from './SwitchTheme';
 
 function TopBar() {
     const { setSearchFlag } = useEventContext();
@@ -22,15 +23,15 @@ function TopBar() {
     }
     return (
         <div className="top-bar-container">
-
-            <div className="input-container">
-                <div onClick={getSearchTarget} className="search">
-                    <span>
-                        <i className='fa fa-search'></i>
-                    </span>
+                <div className="input-container">
+                    <div onClick={getSearchTarget} className="search">
+                        <span>
+                            <i className='fa fa-search'></i>
+                        </span>
+                    </div>
+                    <input id="search-ipt" type="text" placeholder="Buscar" onKeyDown={handleKeyPress} />
                 </div>
-                <input id="search-ipt" type="text" placeholder="Buscar" onKeyDown={handleKeyPress} />
-            </div>
+                <SwitchButton />
         </div>
     );
 }

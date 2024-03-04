@@ -15,6 +15,11 @@
     background-color: #f9f9f9;
 }
 
+#left-bar.active {
+    background: #423F3E;
+    color: #f9f9f9;
+}
+
 .logo-container {
     width: fit-content;
     height: 3rem;
@@ -60,6 +65,7 @@
 .download-button-container {
     width: 10rem;
     height: 2.5rem;
+    padding-left: .1rem;
     display: flex;
     justify-content: start;
     align-items: center;

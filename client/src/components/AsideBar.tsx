@@ -72,7 +72,7 @@ function LeftBar() {
     }
 
     return (
-        <div className="left-bar">
+        <div id="left-bar" className="left-bar">
             <div className="logo-container">
                 <span><i className='fa-solid fa-cloud'></i></span>
                 <span>File Server</span>

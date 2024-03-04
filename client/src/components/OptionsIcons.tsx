@@ -39,7 +39,7 @@ export const OptionsIcons = () => {
     }
 
     return (
-        <div className="opt-icon-container">
+        <div id="opt-bar" className="opt-icon-container">
             <div className="btns-opt">
                 <Button id="back" onClick={backOneLevel({ changePathFlag, changePathValue, pathValue }, selectedFiles, selectedDirs)} type='back' icon='fa fa-undo' />
             </div>

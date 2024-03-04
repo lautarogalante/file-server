@@ -11,7 +11,9 @@
     margin-bottom: 10px;
     background-color: #f9f9f9;
 }
-
+#opt-bar.active{
+    background: #423F3E;
+}
 .btns-opt {
     width: 2rem;
     height: 2rem;
