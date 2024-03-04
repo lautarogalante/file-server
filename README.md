@@ -7,9 +7,7 @@ When downloading multiples files or directories this functionality compress the 
 This application consists of a client in React and a backend in Go that performs all operations on the running server.
 
 
-
-https://github.com/lautarogalante/file-server/assets/69444294/a9f3400a-220e-4115-91b0-c0920af03de8
-
+https://github.com/lautarogalante/file-server/assets/69444294/4abc8b9a-a389-48fb-9e4d-e3561f8734e8
 
 
 
