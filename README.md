@@ -7,16 +7,16 @@ When downloading multiples files or directories this functionality compress the 
 This application consists of a client in React and a backend in Go that performs all operations on the running server.
 
 
-### Content
+#### Content
 
 - [Clone this repository](#clone)
-- [Run in your local machine]()
-  - [Export environment variables](#variables)
-  - [Backend](#install-server)
-  - [Frontend](#install-client)
-- [Run using Docker](#docker)
+- [Run in your local machine](#run-in-your-local-machine)
+  - [Export environment variables](#export-environment-variables)
+  - [Backend](#backend)
+  - [Frontend](#frontnend)
+- [Run using Docker](#run-using-docker)
 
-## Clone this repository
+## Clone
 
 Clone the project, and cd into the folder:
 ```bash
