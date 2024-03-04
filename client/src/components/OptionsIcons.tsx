@@ -55,7 +55,7 @@ export const OptionsIcons = () => {
             <div className="delete-cont">
                 {(selectedFiles.length > 0 || selectedDirs.length > 0 ) && <Button id='delete-btn' onClick={handleDeleteSelection} type="delete" icon='fa-solid fa-trash' />}
             </div>
-            {deleted === 'success' && <Success icon='fa-solid fa-file-circle-check' text='Contenido eliminado' />}
+            {deleted === 'success' && <Success icon='fa-solid fa-trash' text='Contenido eliminado' />}
             {deleted === 'error' && <Error icon='fa-solid fa-xmark' text='error al eliminar el contenido' />}
             {deleted === 'void' && <Error icon='fa-solid fa-xmark' text='Seleccione el contenido' />}
         </div>

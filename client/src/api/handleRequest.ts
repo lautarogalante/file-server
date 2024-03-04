@@ -13,7 +13,6 @@ const search = "/search"
 const disk = "/disk"
 const dlt = "/delete"
 
-console.log(baseUrl, port)
 
 export async function getDataFromEndpoint(path: string): Promise<FileAndDirectory> {
     const getDataUrl = `${baseUrl}:${port}${home}?queryPath=${encodeURIComponent(path)}&_=${Date.now()}`;

@@ -1,15 +1,27 @@
 @font-face {
-    font-family: 'Arimo-Medium';
-    src: url('/fonts/Arimo-Medium.ttf') format('truetype');
+    font-family: "ArimoMedium";
+    src: local("ArimoMedium"), 
+    url("../fonts/Arimo-Medium.ttf") format('truetype');
+    font-weight: normal;
 }
 
 @font-face {
-    font-family: 'Arimo-Bold';
-    src: url('/fonts/Arimo-Bold.ttf') format('truetype');
+    font-family: "ArimoBold";
+    src: local("ArimoBold"), 
+    url('../fonts/Arimo-Bold.ttf') format('truetype');
+    font-weight: normal;
 }
 
 @font-face {
-    font-family: 'Arimo-Medium';
-    src: url('/fonts/Arimo-Medium.ttf') format('truetype');
+    font-family: "ArimoRegular";
+    src: local("ArimoRegular"), 
+    url("../fonts/Arimo-Regular.ttf") format('truetype');
+    font-weight: normal;
+}
 
+@font-face {
+    font-family: "Ultra";
+    src: local("Ultra"), 
+    url("../fonts/Ultra-Regular.ttf") format('truetype');
+    font-weight: normal;
 }

@@ -10,13 +10,12 @@ export const Download = () => {
     )
 }
 
-
 const Downloading = () => {
     const { selectedDirs, selectedFiles } = useDataContext(); 
     let data = "Directorio"; 
-    if (selectedDirs.length > 1) {
-       data = "Directorios" 
-    }else if (selectedFiles.length > 1) {
+    if (selectedDirs.length > 1 && selectedFiles.length === 0) {
+        data = "Directorios" 
+    }else if (selectedFiles.length > 1 && selectedDirs.length === 0) {
         data = "Archivos"
     }
     const cantidad = getLength();

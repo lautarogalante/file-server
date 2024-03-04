@@ -6,6 +6,7 @@
     justify-content: center;
     outline: none;
     padding: 0;
+    font-family: 'ArimoMedium';
 }
 
 .button:hover {
@@ -44,7 +45,7 @@
 .upload-sp {
     width: 5.5rem;
     height: auto;
-    font-family: 'Arimo';
+    font-family: 'ArimoMedium';
     font-size: 14px;
 }
 
@@ -73,7 +74,7 @@
     width: 5.2rem;
     padding: .1rem;
     height: auto;
-    font-family: 'Arimo';
+    font-family: 'ArimoMedium';
     font-size: 14px;
 }
 .i-sp-dwn{
@@ -97,7 +98,7 @@
 .mkdir-sp{
     width: 6.8rem;    
     height: auto;
-    font-family: 'Arimo';
+    font-family: 'ArimoMedium';
     font-size: 14px;
     padding-left: .1rem;
 }

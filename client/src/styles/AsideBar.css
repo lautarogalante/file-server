@@ -31,12 +31,13 @@
     align-items: center;
     width: fit-content;
     height: auto;
-    font-family: 'Arimo-Bold';
+    font-family: 'ArimoBold';
     font-weight: bold;
 }
 
-.logo-container span i {
+.fa-cloud{
     color: #AAD7D9;
+    font-size: 2em;
 }
 
 .button-container {
@@ -74,7 +75,7 @@
     color: #54aeff;
 }
 .fa-cloud-arrow-down {
-    color: #54ca89;
+    color: #238636;
 }
 
 .fa-hard-drive {
