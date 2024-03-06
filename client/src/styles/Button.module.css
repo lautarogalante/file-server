@@ -15,7 +15,6 @@
     border: none;
 }
 
-
 .upload {
     width: 100%;
     height: 3.5rem;
@@ -160,4 +159,51 @@
 }
 .delete:hover {
     background-color: #d5d6da;
+}
+
+.menu-button {
+    display: none; 
+}
+
+.close-bar {
+    width: 1rem;
+    height: 1rem;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-button {
+        display: flex; 
+        width: 2rem !important;
+        height: 2rem;
+    }
+    .menu-button:hover { 
+        background-color: #e1e2e4;
+        outline: none;
+        border: none;
+    }
+    .menu-button:active {
+        outline: none;
+        border: none;
+    }
+    .menu-button:focus {
+        outline: none;
+        border: none;
+    }
+
+    .close-bar {
+        width: 1rem;
+        height: 1rem;
+        display: flex;
+    }
+    .close-bar:hover {
+        padding: .5rem;
+        background-color: #f81b1b;
+        outline: none;
+        border: none;
+    }
 }

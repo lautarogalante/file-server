@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
     gap: .5rem;
-    min-width: 25rem;
+    min-width: 15rem;
     height: 2.5rem;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -13,7 +13,7 @@
 
 .input-container {
     width: 38%;
-    min-width: 25rem;
+    min-width: 15rem;
     height: 2.5rem;
     display: flex;
     justify-content: left;
@@ -32,11 +32,12 @@
 
 .input-container input {
     width: 87%;
-    min-width: 20rem;
+    min-width: 10rem;
     height: 2rem;
     background-color: #DDE6ED;
     outline: none;
     border: none;
+    border-radius: 2rem;
 }
 
 .input-container input:focus {

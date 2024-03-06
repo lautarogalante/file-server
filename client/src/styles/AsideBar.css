@@ -30,6 +30,7 @@
     align-items: center;
     padding-top: 1rem;
 }
+
 .logo-container span {
     display: flex;
     justify-content: center;
@@ -40,7 +41,7 @@
     font-weight: bold;
 }
 
-.fa-cloud{
+.fa-cloud {
     color: #AAD7D9;
     font-size: 2em;
 }
@@ -70,6 +71,7 @@
     justify-content: start;
     align-items: center;
 }
+
 .mkdir-button-container {
     width: 10rem;
     height: 2.5rem;
@@ -80,6 +82,7 @@
 .fa-folder-plus {
     color: #54aeff;
 }
+
 .fa-cloud-arrow-down {
     color: #238636;
 }
@@ -90,4 +93,45 @@
 
 .input-files {
     display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .left-bar-container {
+        display: none;
+    }
+
+    .left-bar-container.visible {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 16rem;
+        height: 100%;
+        background-color: #f9f9f9;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .close-bar-cont {
+        width: 1rem;
+        height: 1rem;
+        display: block;
+        position: absolute;
+        left: 14rem;
+        top: 1rem;
+        
+    }
+    .close-bar span {
+        width: fit-content;
+        height: fit-content;
+    }
+
+}
+
+.menu-button-cont {
+    width: fit-content;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    padding-top: .8rem;
 }

@@ -95,6 +95,5 @@ function LeftBar() {
             { uploadStatus === 'error' && <Error icon='fa-solid fa-xmark' text='Error al subir archivos'/> }
         </div>
     );
-
 }
 export default LeftBar
