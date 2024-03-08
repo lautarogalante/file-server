@@ -1,4 +1,3 @@
-import './styles/App.css'
 import './styles/DataSection.css'
 import './components/AsideBar'
 import { PathProvider } from './context/PathProvider'

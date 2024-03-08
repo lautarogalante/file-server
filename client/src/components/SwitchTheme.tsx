@@ -5,12 +5,13 @@ const handleSwitchButton = () => {
     const toggle = document.getElementById('toggle');
     const leftBar = document.getElementById('left-bar');
     const optBar = document.getElementById('opt-bar');
-    
-    if (toggle && body && leftBar && optBar) {
+    const logo = document.getElementById('logo');
+    if (toggle && body && leftBar && optBar && logo) {
         toggle.classList.toggle('active');
         body.classList.toggle('active');
         leftBar.classList.toggle('active');
         optBar.classList.toggle('active');
+        logo.classList.toggle('active')
     }
 }
 

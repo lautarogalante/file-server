@@ -4,7 +4,7 @@ import { useDataContext } from '../context/DataContext'
 
 export const Download = () => {
     return (
-        <div className="download-cont">
+        <div className="download-cont animation-slide-right">
             <Downloading/>
         </div>
     )

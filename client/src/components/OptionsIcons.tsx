@@ -52,9 +52,7 @@ export const OptionsIcons = () => {
             <div className="sorted-opt">
                 <Button id="sorted-btn" onClick={handleSortedData} type="sorted" icon={`${sortedData ? 'fa-solid fa-arrow-up' : 'fa-solid fa-arrow-down'}`} />
             </div>
-            <div className="delete-cont">
-                {(selectedFiles.length > 0 || selectedDirs.length > 0 ) && <Button id='delete-btn' onClick={handleDeleteSelection} type="delete" icon='fa-solid fa-trash' />}
-            </div>
+            {(selectedFiles.length > 0 || selectedDirs.length > 0 ) && <Button id='delete-btn' onClick={handleDeleteSelection} type="delete" icon='fa-solid fa-trash' />}
             {deleted === 'success' && <Success icon='fa-solid fa-trash' text='Contenido eliminado' />}
             {deleted === 'error' && <Error icon='fa-solid fa-xmark' text='error al eliminar el contenido' />}
             {deleted === 'void' && <Error icon='fa-solid fa-xmark' text='Seleccione el contenido' />}

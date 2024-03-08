@@ -1,6 +1,6 @@
 .data-section {
     width: 100%;
-    height: 51rem;
+    height: 48rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,7 +8,7 @@
     background-color: #FFFFFF;
     border-radius: 20px;
     box-sizing: border-box;
-    padding-bottom: 1.5rem;
+    padding-bottom: 5rem;
     border: 1px solid #d0d7de;
 }
 
@@ -24,3 +24,8 @@
     box-sizing: border-box;
 }
 
+@media screen and (max-width: 768px) {
+    .data-section{
+        height: 35rem;
+    }
+}

@@ -1,8 +1,13 @@
 @import url('fonts.css');
 
 .left-bar-container {
+    width: fit-content;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-bottom: .5rem;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .left-bar {
@@ -13,6 +18,7 @@
     flex-direction: column;
     align-content: start;
     background-color: #f9f9f9;
+    padding-top: 3rem;
 }
 
 #left-bar.active {
@@ -20,26 +26,7 @@
     color: #f9f9f9;
 }
 
-.logo-container {
-    width: fit-content;
-    height: 3rem;
-    display: flex;
-    justify-content: start;
-    gap: 1rem;
-    padding-left: 1.5rem;
-    align-items: center;
-    padding-top: 1rem;
-}
 
-.logo-container span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    height: auto;
-    font-family: 'ArimoBold';
-    font-weight: bold;
-}
 
 .fa-cloud {
     color: #AAD7D9;
@@ -95,7 +82,15 @@
     display: none;
 }
 
+.menu-button-cont {
+    display: none;
+    width: fit-content;
+}
+
 @media screen and (max-width: 768px) {
+    .menu-button-cont{
+        display: block;
+    }
     .left-bar-container {
         display: none;
     }
@@ -129,9 +124,3 @@
 
 }
 
-.menu-button-cont {
-    width: fit-content;
-    padding-left: .5rem;
-    padding-right: .5rem;
-    padding-top: .8rem;
-}

@@ -2,7 +2,7 @@
 
 .opt-icon-container {
     width: 100%;
-    height: 2.5rem;
+    height: auto;
     padding-left: 1rem;
     display: flex;
     align-items: center;
@@ -10,6 +10,7 @@
     box-sizing: border-box;
     margin-bottom: 10px;
     background-color: #f9f9f9;
+    flex-wrap: wrap;
 }
 #opt-bar.active{
     background: #423F3E;
@@ -38,5 +39,13 @@
     padding-left: 10px;
     padding-right: 10px;
     font-family: 'ArimoBold';
+    white-space: nowrap;
 }
 
+@media screen and (max-width: 768px) {
+    .opt-icon-container {
+        justify-content: center;
+        align-items: center;
+        padding-left: 0;
+    }
+}

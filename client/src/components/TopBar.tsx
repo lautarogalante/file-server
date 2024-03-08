@@ -22,16 +22,16 @@ function TopBar() {
         }
     }
     return (
-        <div className="top-bar-container">
-                <div className="input-container">
-                    <div onClick={getSearchTarget} className="search">
-                        <span>
-                            <i className='fa fa-search'></i>
-                        </span>
-                    </div>
-                    <input id="search-ipt" type="text" placeholder="Buscar" onKeyDown={handleKeyPress} />
+        <div className="top-bar">
+            <div className="input-container">
+                <div onClick={getSearchTarget} className="search">
+                    <span>
+                        <i className='fa fa-search'></i>
+                    </span>
                 </div>
-                <SwitchButton />
+                <input id="search-ipt" type="text" placeholder="Buscar" onKeyDown={handleKeyPress} />
+            </div>
+            <SwitchButton />
         </div>
     );
 }

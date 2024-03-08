@@ -7,6 +7,7 @@
     outline: none;
     padding: 0;
     font-family: 'ArimoMedium';
+    color: black;
 }
 
 .button:hover {
@@ -114,6 +115,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     outline: none;
     border: none;
+    border-radius: .5rem;
+    background-color: #FFFFFF;
 }
 
 .back:focus {
@@ -127,7 +130,9 @@
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     outline: none;
-    border: none
+    border: none;
+    border-radius: .5rem;
+    background-color: #FFFFFF;
 }
 
 .home:focus {
@@ -142,6 +147,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     outline: none;
     border: none;
+    border-radius: .5rem;
+    background-color: #FFFFFF;
 }
 
 .sorted:focus {
@@ -149,10 +156,16 @@
 }
 
 .delete {
+    width: 2rem;
+    height: 2rem;
     color: #D24545;
     outline: none;
     border: none;
-    pad: .5rem;
+    padding: .5rem;
+    border-radius: .5rem;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .delete span {
     padding: .2rem;
@@ -180,6 +193,11 @@
         display: flex; 
         width: 2rem !important;
         height: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        outline: none;
+        border: none;
+        border-radius: .5rem;
+        background-color: #FFFFFF;
     }
     .menu-button:hover { 
         background-color: #e1e2e4;
@@ -199,11 +217,14 @@
         width: 1rem;
         height: 1rem;
         display: flex;
+        border-radius: .5rem;
+        border: none;
     }
     .close-bar:hover {
         padding: .5rem;
-        background-color: #f81b1b;
         outline: none;
         border: none;
+        border-radius: .5rem;
+        background-color: #f81b1b;
     }
 }

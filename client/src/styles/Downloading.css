@@ -9,6 +9,17 @@
     }
 }
 
+@keyframes slide-right {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .download-cont {
     display: flex;
     width: 15.8rem;
@@ -21,7 +32,6 @@
     border-radius: 1rem;
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    animation: slide-up 1s;
     background-color: #FFFFFF;
 }
 
@@ -72,3 +82,21 @@
     width: 1rem;
     animation: spin 2s linear infinite;
 }
+
+.animation-slide-up {
+    animation: slide-up 1s;
+}
+
+.animation-slide-right {
+    animation: slide-right 1s;
+}
+
+@media screen and (max-width: 768px) {
+   .downloading{
+        width: fit-content;
+   }
+   .title-sp {
+        width: fit-content;
+   }
+}
+

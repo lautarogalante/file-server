@@ -73,10 +73,6 @@ function LeftBar() {
 
     return (
         <div id="left-bar" className="left-bar">
-            <div className="logo-container">
-                <span><i className='fa-solid fa-cloud'></i></span>
-                <span>File Server</span>
-            </div>
             <div className="button-container">
                 <div className="upload-button-container">
                     <Button id='upload-btn' textClass='upload-sp' iconSpClass='i-sp-upload' onClick={handleUploadButtonClick} icon='fa-solid fa-plus' title='Subir Archivo' type='upload' />

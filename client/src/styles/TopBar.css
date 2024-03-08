@@ -3,17 +3,24 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     gap: .5rem;
     min-width: 15rem;
-    height: 2.5rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    height: 4rem;
+    box-sizing: border-box;
 }
 
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
+}
 .input-container {
     width: 38%;
-    min-width: 15rem;
+    min-width: 20rem;
+    max-width: 40rem;
     height: 2.5rem;
     display: flex;
     justify-content: left;
@@ -69,4 +76,45 @@
 
 .search-sp {
     width: 100%;
+}
+
+.logo-container {
+    width: 233px;
+    min-width: 233px;
+    height: 3rem;
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.logo-container span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: auto;
+    font-family: 'ArimoBold';
+    font-weight: bold;
+}
+
+#logo.active {
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 768px) {
+    .logo-container{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 432px){
+   .input-container {
+        width: 100%;
+        min-width: 6rem;
+    }
+    .input-container input {
+        min-width: 4rem;
+    }
 }
