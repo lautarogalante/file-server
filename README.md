@@ -21,7 +21,7 @@ https://github.com/lautarogalante/file-server/assets/69444294/b4f969b1-ae61-425d
 
 Clone the project, and cd into the folder:
 ```bash
-git clone http://github.com/lautarogalante/file-server.git
+git clone https://github.com/lautarogalante/file-server.git
 cd file-server
 ```
 ### Run in your local machine
